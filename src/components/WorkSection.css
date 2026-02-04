@@ -1,0 +1,200 @@
+/* SECTION WRAPPER */
+.work-section {
+    padding: 80px 20px;
+    background: #ffffff;
+  }
+  
+  .work-section.dark {
+    background: #0d0d0d;
+  }
+  
+  /* CONTAINER */
+  .work-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* HEADER */
+  .work-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .work-subtitle {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #2563eb;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  
+  .work-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #111;
+  }
+  
+  .work-description {
+    font-size: 18px;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* EMPTY STATE */
+  .work-empty {
+    text-align: center;
+    padding: 80px 0;
+    color: #777;
+  }
+  
+  .work-empty-icon {
+    width: 60px;
+    height: 60px;
+    color: #999;
+    margin-bottom: 20px;
+  }
+  
+  /* LIST WRAPPER */
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  /* WORK CARD */
+  .work-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-left: 6px solid #3b82f6;
+    border-radius: 24px;
+    padding: 36px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+  
+  .work-card:hover {
+    transform: translateY(-6px);
+    border-color: #2563eb;
+    box-shadow: 0px 20px 40px rgba(37, 99, 235, 0.25);
+  }
+  
+  /* Hover gradient background */
+  .work-card-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, #e8f0ff);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: inherit;
+  }
+  
+  .work-card:hover .work-card-bg {
+    opacity: 1;
+  }
+  
+  /* CONTENT */
+  .work-card-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* TITLE AREA */
+  .work-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  .work-card-title-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .work-card-icon {
+    width: 28px;
+    height: 28px;
+    color: #2563eb;
+  }
+  
+  .work-position {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+  }
+  
+  .work-company {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 2px;
+    color: #444;
+  }
+  
+  /* CURRENT TAG */
+  .work-current-tag {
+    background: #facc15;
+    padding: 6px 12px;
+    font-weight: 800;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #111;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+  }
+  
+  /* DESCRIPTION */
+  .work-text {
+    color: #555;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+  
+  /* TECHNOLOGY TAGS */
+  .work-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  .work-tech {
+    padding: 6px 12px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 10px;
+  }
+  
+  .work-tech-more {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  /* DATE SECTION */
+  .work-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 18px;
+    margin-top: 20px;
+    color: #555;
+    font-size: 15px;
+  }
+  
+  .work-calendar-icon {
+    width: 18px;
+    height: 18px;
+    color: #555;
+  }
+  
+  .work-present {
+    color: #16a34a;
+  }
+  
