@@ -14,25 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Amitosh Portfolio | Full Stack Developer",
+  title: "Full Stack Developer Portfolio",
   description: "Portfolio of a Full Stack Developer specializing in MERN stack and Flutter",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="w-full" suppressHydrationWarning>
-      <body className={`w-full antialiased ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className="w-full">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-full`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-          {children}
+      >
+        {children}
         </ThemeProvider>
       </body>
     </html>
