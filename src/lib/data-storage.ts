@@ -14,11 +14,11 @@ export function getProjects(): Project[] {
     const defaultProjects: Project[] = [
       {
         id: '1',
-        title: 'Recode – Code Editor & Management Tool',
-        description: 'Recode is a comprehensive online code editor and management platform designed for aspiring developers and students. It allows users to practice coding by solving curated programming questions, participate in quizzes to test their knowledge, and take online exams in a secure environment.',
-        technologies: ['React', 'Node.js', 'Express', 'MongoDB', ],
-        githubUrl: 'https://github.com/amitosh2002/recode-code-editor',
-        liveUrl: 'https://recode-code-editor.onrender.com',
+        title: 'E-Commerce Platform',
+        description: 'A full-stack e-commerce platform built with MERN stack featuring user authentication, payment integration, and admin dashboard.',
+        technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
+        githubUrl: '#',
+        liveUrl: '#',
         featured: true,
         createdAt: new Date().toISOString(),
       },

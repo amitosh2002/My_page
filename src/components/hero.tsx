@@ -1,243 +1,47 @@
 'use client';
 
-import React, { useState, FormEvent, ChangeEvent, JSX } from 'react';
-import Image from 'next/image';
-import {
-  Code2,
-  Github,
-  Linkedin,
-  Play,
-  TrendingUp,
-  Sparkles,
-  CheckSquare,
-} from 'lucide-react';
-import './Hero.scss';
+import { Code2, Smartphone, CheckSquare, FileText, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
-interface SocialLink {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}
-
-interface Feature {
-  icon: React.ReactNode;
-  iconColor: 'yellow' | 'blue' | 'orange' | 'gray';
-  title: string;
-  description: string;
-  isHighlight?: boolean;
-}
-
-export function Hero(): JSX.Element {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Email submitted:', email);
-  };
-
-  const handleScheduleCall = () => {
-    console.log('Schedule a call clicked');
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const socialLinks: SocialLink[] = [
-    {
-      href: 'https://github.com/amitosh2002',
-      icon: <Github size={18} />,
-      label: 'GitHub',
-    },
-    {
-      href: 'https://www.linkedin.com/in/amitosh-kumar-647654282/',
-      icon: <Linkedin size={18} />,
-      label: 'LinkedIn',
-    },
-  ];
-
-  const features: Feature[] = [
-    {
-      icon: <Code2 size={24} />,
-      iconColor: 'yellow',
-      title: 'Full Stack Expertise',
-      description:
-        'My knowledge and experience in modern web technologies provide unparalleled advantages in building scalable applications.',
-    },
-    {
-      icon: <CheckSquare size={24} />,
-      iconColor: 'blue',
-      title: 'Partners Not Clients',
-      description:
-        "I'm here to support your vision and collaborate with you, leaving no stone unturned in achieving success.",
-    },
-    {
-      icon: <TrendingUp size={24} />,
-      iconColor: 'orange',
-      title: 'Proven Growth',
-      description:
-        "I've delivered successful projects with industry-leading quality and performance standards.",
-      isHighlight: true,
-    },
-    {
-      icon: <Sparkles size={24} />,
-      iconColor: 'gray',
-      title: 'Quality that Converts',
-      description:
-        'Clean code, responsive design, and user experiences that convert visitors into customers.',
-    },
-  ];
-
-  const partnerLogos = [
-    'SPACE saver',
-    'Better Booch',
-    'MEDIFY AIR',
-    "maxine's heavenly",
-    'The Kombucha Shop',
+export function Hero() {
+  const skills = [
+    { name: 'MERN Stack', icon: Code2, color: 'text-blue-500' },
+    { name: 'Flutter', icon: Smartphone, color: 'text-cyan-500' },
+    { name: 'Jira', icon: CheckSquare, color: 'text-blue-600' },
+    { name: 'Notion', icon: FileText, color: 'text-gray-700 dark:text-gray-300' },
   ];
 
   return (
-    <section className="hero">
-      {/* Background */}
-      <div className="hero__bg">
-        <div className="hero__blob hero__blob--orange-left" />
-        <div className="hero__blob hero__blob--orange-right" />
+    <div className="py-24 md:py-32 text-center bg-gray-50 dark:bg-gray-900 overflow-hidden relative">
+      {/* Subtle animated background shapes */}
+      <div className="absolute inset-0 z-0 opacity-10">
+        <div className="w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob top-10 left-1/4" />
+        <div className="w-48 h-48 bg-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 top-1/2 right-1/4" />
+        <div className="w-48 h-48 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 bottom-10 left-1/3" />
       </div>
 
-      <div className="hero__container">
-        {/* Left */}
-        <div className="hero__content">
-          <h1 className="hero__title">
-            Proven Partner for <br />
-            <span className="hero__title--highlight">
-              Full Stack Success
-            </span>
-          </h1>
-
-          <p className="hero__description">
-            Building modern web and mobile applications with cutting-edge
-            technologies. I help businesses accelerate growth while maximizing
-            efficiency through comprehensive development and creative solutions.
-          </p>
-
-        <form
-            className="hero__form"
-            action="https://formspree.io/f/mjgonlqo"
-            method="POST"
-          >
-            <input
-              type="email"
-              name="email"        // ✅ REQUIRED for Formspree
-              className="hero__input"
-              placeholder="Enter your email"
-              required
-            />
-
-            <button type="submit" className="hero__btn hero__btn--primary">
-              Get Started
-            </button>
-          </form>
-
-
-          <p className="hero__subtext">
-            We&apos;ll be in touch or feel free to{' '}
-            <button
-              type="button"
-              className="hero__link"
-              onClick={handleScheduleCall}
-            >
-              schedule a call now
-            </button>
-            .
-          </p>
-
-          <div className="hero__socials">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero__social-link"
-              >
-                {social.icon}
-                <span>{social.label}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Right */}
-        <div className="hero__media">
-          <div className="hero__media-card">
-            <button
-              className="hero__play-btn"
-              type="button"
-              aria-label="Play video"
-            >
-              <Play size={24} fill="white" />
-            </button>
-
-            <Image
-              src="/dp_2.png"
-              alt="Team collaboration"
-              fill
-              className="hero__image"
-              priority
-            />
-          </div>
-        </div>
+      <div className="max-w-4xl mx-auto px-4 relative z-10">
+        <p className="text-lg md:text-xl font-medium text-blue-600 dark:text-blue-400 mb-4 animate-fadeInUp delay-300">
+          <Sparkles className="inline-block w-5 h-5 mr-2 -mt-1 animate-spin-slow" />
+          Welcome to My Work
+        </p>
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight animate-fadeInUp delay-500">
+          Exploring the Art of
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 ml-3">
+            Creation
+          </span>
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10 animate-fadeInUp delay-700">
+          A deep dive into complex engineering problems and creative solutions.
+        </p>
+        <a 
+          href="#projects"
+          className="inline-flex items-center px-8 py-3 border border-transparent text-lg font-semibold rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl animate-bounce-slow delay-900"
+        >
+          View All Projects
+          <Code2 className="w-5 h-5 ml-2" />
+        </a>
       </div>
-
-      {/* Partners */}
-      {/* <div className="hero__partners">
-        <div className="hero__partners-grid">
-          {partnerLogos.map((logo) => (
-            <div key={logo} className="hero__partner-logo">
-              {logo}
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      {/* Why Choose */}
-      <div className="hero__why">
-        <h2 className="hero__why-title">Why Choose Me?</h2>
-
-        <div className="hero__features">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`hero__feature ${
-                feature.isHighlight ? 'hero__feature--highlight' : ''
-              }`}
-            >
-              <div
-                className={`hero__feature-icon hero__feature-icon--${feature.iconColor}`}
-              >
-                {feature.icon}
-              </div>
-              <h3 className="hero__feature-title">{feature.title}</h3>
-              <p className="hero__feature-desc">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Principle */}
-      <div className="hero__principle">
-        <div className="hero__principle-blob" />
-        <div className="hero__principle-content">
-          <p className="hero__principle-subtitle">My guiding principle</p>
-          <h2 className="hero__principle-title">
-            Code × Design = Impact
-          </h2>
-          <p className="hero__principle-desc">
-            I leverage modern technologies and proven development strategies to
-            build applications that are designed to perform and scale.
-          </p>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }

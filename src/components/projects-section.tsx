@@ -1,252 +1,151 @@
 'use client';
 
+import { Project } from '@/types';
+import { ExternalLink, Github, Code2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import './ProjectsSection.scss';
-import ProjectCard, { Project } from './projectCard';
+import { getProjects } from '@/lib/data-storage';
 
 export function ProjectsSection() {
-
- const projects: Project[] = [
-  {
-    id: '1',
-    title: 'Hora',
-    shortDescription:
-      'A modern workspace and project collaboration platform for managing tasks, services, and team workflows.',
-    fullDescription:
-      'Hora is a workspace-oriented platform designed to manage projects, services, and user workflows efficiently. It includes structured dashboards, service-based modules, admin controls, and real-time collaboration features. Built with scalability and performance in mind, Hora focuses on clean UI, modular architecture, and seamless user experience.',
-    image: '/hora_dashboard.png',
-    images: [
-      '/hora-Dora.png',
-      '/Hora_sprint.png',
-      '/Hora_landing_page.png',
-      '/hora_dashboard.png',
-    ],
-    tags: ['Workspace', 'SaaS', 'Dashboard', 'Full Stack'],
-    demoUrl: 'https://dev-hora.netlify.app/',
-    githubUrl: 'https://github.com/amitosh2002/Backend_SD',
-    date: 'January 2025',
-    features: [
-      'Workspace-based project management',
-      'Role-based access control',
-      'Service and module handling',
-      'Admin dashboard',
-      'DORA Analytics',
-      'Scalable backend architecture',
-      'Clean and modern UI'
-    ],
-    technologies: [
-      'React',
-      'Redux Tool kit',
-      'JavaScript',
-      'Node.js',
-      'MongoDB',
-      'NodeMailer',
-      'Cron js',
-      'Resend SMTP',
-      'Socket.io',
-      'Docker'
-    ]
-  },
-
-  {
-    id: '2',
-    title: '<re/code>',
-    shortDescription:
-      'An online coding platform for practicing, learning, and testing programming skills with admin control.',
-    fullDescription:
-      '<re/code> is a full-stack online coding platform built for learners and developers to practice coding problems, take tests, and improve problem-solving skills. The platform supports code execution via REST APIs, includes an admin panel for managing problems and users, and provides a smooth coding experience using a modern MERN architecture.',
-    image: '/recode.png',
-    images: [
-      '/recode.png',
-      '/recode_quiz.png',
-    ],
-    tags: ['Coding Platform', 'Education', 'MERN', 'SaaS'],
-    demoUrl: 'https://recode-code-editor.onrender.com/',
-    githubUrl: 'https://github.com/amitosh2002/recode-code-editor',
-    date: 'November 2024',
-    features: [
-      'Online code editor',
-      'REST API-based code execution',
-      'Practice problems and tests',
-      'Admin panel for content management',
-      'User authentication and tracking',
-      'Performance-focused UI'
-    ],
-    technologies: [
-      'React',
-      'Node.js',
-      'Express',
-      'MongoDB',
-      'REST API',
-      'JWT',
-      'Monaco Editor'
-    ]
-  },
-
-  {
-    id: '3',
-    title: 'Namaste India',
-    shortDescription:
-      'A frontend travel guide showcasing the best places to travel across India with routes and ideal travel times.',
-    fullDescription:
-      'Namaste India is a frontend-focused travel guide platform that highlights popular and hidden travel destinations across India. It provides information about the best time to visit, suggested travel routes, and visually rich destination previews. The project is designed for exploration, inspiration, and ease of navigation.',
-    image: '/namasteindia.png',
-    images: [
-      '/namasteindia.png',
-      '/namasteIndia_2.png',
-      
-     
-    ],
-    tags: ['Travel', 'Frontend', 'India', 'UI/UX'],
-    demoUrl: 'https://namasteeindia.netlify.app/',
-    githubUrl: 'https://github.com/amitosh2002/NamasteIndia',
-
-    date: 'August 2024',
-    features: [
-      'All-India travel destination listing',
-      'Best time to visit suggestions',
-      'Route and travel guidance',
-      'Responsive design',
-      'Visually rich destination pages'
-    ],
-    technologies: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'Tailwind CSS',
-      'Framer Motion'
-    ]
-  }
-];
-
+  const [projects] = useState<Project[]>(() => {
+    if (typeof window === 'undefined') return [];
+    return getProjects();
+  });
 
   const [mounted, setMounted] = useState(false);
-
+  
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
   return (
-    // <section id="projects" className="projects-section">
-    //   <div className="projects-container">
-        
-    //     {/* Header */}
-    //     <div className="projects-header">
-    //       <p className="projects-subtitle">Showcase</p>
-    //       <h2 className="projects-title">Featured Works</h2>
-    //       <p className="projects-desc">
-    //         Each project represents a significant challenge solved using modern development practices.
-    //       </p>
-    //     </div>
-
-    //     {/* No Projects */}
-    //     {projects.length === 0 ? (
-    //       <div className="projects-empty">
-    //         <Code2 className="empty-icon" />
-    //         <p>No projects yet. Check back soon!</p>
-    //       </div>
-    //     ) : (
-    //       /* Projects Grid */
-    //       <div className="projects-grid">
-    //         {projects.map((project, index) => (
-    //           <div
-    //             key={project.id}
-    //             className={`project-card ${mounted ? 'visible' : ''}`}
-    //             style={{ transitionDelay: `${index * 120}ms` }}
-    //           >
-    //             {/* Optional Image */}
-    //             {project.imageUrl && project.imageUrl !== '#' && (
-    //               <div className="card-image-container">
-    //                 <img
-    //                   src={project.imageUrl}
-    //                   alt={project.title}
-    //                   className="card-image"
-    //                 />
-    //               </div>
-    //             )}
-
-    //             <div className="card-content">
-    //               {/* Title Row */}
-    //               <div className="card-header">
-    //                 <div className="title-left">
-    //                   <Code2 className="card-icon" />
-    //                   <h3 className="card-title">{project.title}</h3>
-    //                 </div>
-
-    //                 {project.featured && (
-    //                   <span className="star-badge">STAR</span>
-    //                 )}
-    //               </div>
-
-    //               {/* Description */}
-    //               <p className="card-desc">{project.description}</p>
-
-    //               {/* Tech Tags */}
-    //               <div className="tech-list">
-    //                 {project.technologies.slice(0, 4).map((tech, tIndex) => (
-    //                   <span key={tIndex} className="tech-item">{tech}</span>
-    //                 ))}
-    //                 {project.technologies.length > 4 && (
-    //                   <span className="tech-more">
-    //                     +{project.technologies.length - 4} more
-    //                   </span>
-    //                 )}
-    //               </div>
-
-    //               {/* Footer Links */}
-    //               <div className="card-footer">
-    //                 {project.githubUrl && project.githubUrl !== '#' ? (
-    //                   <a
-    //                     className="card-link"
-    //                     href={project.githubUrl}
-    //                     target="_blank"
-    //                     rel="noopener noreferrer"
-    //                   >
-    //                     <Github className="link-icon" /> View Code
-    //                   </a>
-    //                 ) : (
-    //                   <span className="link-disabled">
-    //                     <Github className="link-icon" /> Code Unavailable
-    //                   </span>
-    //                 )}
-
-    //                 {project.liveUrl && project.liveUrl !== '#' ? (
-    //                   <a
-    //                     className="card-link"
-    //                     href={project.liveUrl}
-    //                     target="_blank"
-    //                     rel="noopener noreferrer"
-    //                   >
-    //                     <ExternalLink className="link-icon" /> Live Demo
-    //                   </a>
-    //                 ) : (
-    //                   <span className="link-disabled">
-    //                     <ExternalLink className="link-icon" /> Live Unavailable
-    //                   </span>
-    //                 )}
-    //               </div>
-    //             </div>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     )}
-    //   </div>
-    // </section>
-     <section className="project-grid">
-      <div className="project-grid__container">
-        <div className="project-grid__header">
-          <h2 className="project-grid__title">Featured Projects</h2>
-          <p className="project-grid__subtitle">
-            Explore my latest work and creative solutions
+    <section id="projects" className="py-20 md:py-28 px-4 bg-white dark:bg-gray-950">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16 animate-fadeInUp">
+          <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2">
+            Showcase
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white leading-tight">
+            Featured Works
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Each project represents a significant challenge solved using modern development practices.
           </p>
         </div>
 
-        <div className="project-grid__items">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+        {projects.length === 0 ? (
+          <div className="text-center py-16">
+            <Code2 className="h-16 w-16 mx-auto text-gray-400 dark:text-gray-600 mb-4" />
+            <p className="text-xl text-gray-500 dark:text-gray-400">
+              No projects yet. Check back soon!
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className="
+                  group 
+                  bg-white dark:bg-gray-800 
+                  rounded-3xl 
+                  shadow-xl dark:shadow-2xl 
+                  hover:shadow-blue-500/40 dark:hover:shadow-blue-500/60
+                  transition-all duration-500 
+                  overflow-hidden 
+                  border border-gray-100 dark:border-gray-700 
+                  hover:border-blue-500 dark:hover:border-blue-400
+                  hover:-translate-y-2 hover:scale-[1.01]
+                  relative
+                "
+                style={{
+                    opacity: mounted ? 1 : 0,
+                    transform: mounted ? 'translateY(0)' : 'translateY(40px)',
+                    transitionDelay: `${index * 100}ms`,
+                    transition: 'opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                }}
+              >
+                {/* Background gradient on hover for modern look */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-blue-50 dark:to-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                
+                <div className="p-8 space-y-6 h-full flex flex-col relative z-10">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      <Code2 className="h-7 w-7 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate">
+                        {project.title}
+                      </h3>
+                    </div>
+                    {project.featured && (
+                      <span className="px-3 py-1 text-sm font-extrabold bg-yellow-400 text-gray-900 rounded-full flex-shrink-0 shadow-lg animate-pulse-slow">
+                        STAR
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-gray-600 dark:text-gray-400 line-clamp-3 flex-grow text-base leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Technology Tags Section */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 text-xs font-bold uppercase bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="px-3 py-1 text-xs font-medium text-gray-500 dark:text-gray-400">
+                        +{project.technologies.length - 4} more
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Action Links Section */}
+                  <div className="flex gap-6 pt-5 border-t border-gray-200 dark:border-gray-700">
+                    {/* GitHub Link */}
+                    {project.githubUrl && project.githubUrl !== '#' ? (
+                      <a 
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-semibold group-hover:scale-105 group-hover:translate-x-0.5"
+                      >
+                        <Github className="h-5 w-5" />
+                        <span className="text-base">View Code</span>
+                      </a>
+                    ) : (
+                      <span className="flex items-center gap-2 text-gray-400 dark:text-gray-600 cursor-not-allowed">
+                        <Github className="h-5 w-5" />
+                        <span className="text-base">Code Unavailable</span>
+                      </span>
+                    )}
+                    
+                    {/* Live Demo Link */}
+                    {project.liveUrl && project.liveUrl !== '#' ? (
+                      <a 
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-all duration-300 font-semibold group-hover:scale-105 group-hover:translate-x-0.5"
+                      >
+                        <ExternalLink className="h-5 w-5" />
+                        <span className="text-base">Live Demo</span>
+                      </a>
+                    ) : (
+                      <span className="flex items-center gap-2 text-gray-400 dark:text-gray-600 cursor-not-allowed">
+                        <ExternalLink className="h-5 w-5" />
+                        <span className="text-base">Live Unavailable</span>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
