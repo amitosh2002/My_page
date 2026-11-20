@@ -1,15 +1,17 @@
 'use client';
 
 import { useState } from 'react';
+import Image, { StaticImageData } from 'next/image';
 import {
-  BarChart3,
-  Globe,
-  Clock,
-  GraduationCap,
-  Building2,
   Briefcase,
   Users,
 } from 'lucide-react';
+
+import shipiqLogo from '@/theme/shipiq.png';
+import tpLogo from '@/theme/t&p.svg';
+import mittarvLogo from '@/theme/mittarv.svg';
+import utpattiLogo from '@/theme/utpatti.png';
+
 import './WorkSection.css';
 
 interface TimelineItem {
@@ -19,7 +21,8 @@ interface TimelineItem {
   company: string;
   description: string;
   technologies: string[];
-  icon: typeof BarChart3;
+  logo: StaticImageData | string;
+  logoBg?: string;
   isCurrent?: boolean;
   concurrentNote?: string;
 }
@@ -34,7 +37,7 @@ const companyExperiences: TimelineItem[] = [
     description:
       'Leading frontend and full-stack development for shipping logistics intelligence, tracking automation, and high-performance analytics dashboards.',
     technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
-    icon: BarChart3,
+    logo: shipiqLogo,
     isCurrent: true,
   },
   {
@@ -45,7 +48,8 @@ const companyExperiences: TimelineItem[] = [
     description:
       'Engineered secure payment processing workflows, booking system modules, and responsive checkout experiences with high reliability and throughput.',
     technologies: ['React', 'TypeScript', 'Payment Gateways', 'Tailwind CSS', 'REST API'],
-    icon: Globe,
+    logo: tpLogo,
+    logoBg: '#0f172a', // Dark container so white SVG logo shines
   },
   {
     id: 'mittarv',
@@ -55,7 +59,7 @@ const companyExperiences: TimelineItem[] = [
     description:
       'Developed responsive customer-facing product features, modular frontend state management, and reusable UI components across the platform.',
     technologies: ['React', 'JavaScript', 'Node.js', 'Redux', 'SCSS'],
-    icon: Clock,
+    logo: mittarvLogo,
   },
 ];
 
@@ -69,7 +73,7 @@ const mentorshipExperiences: TimelineItem[] = [
     description:
       'Served as Technical Mentor guiding fellows in modern web engineering, architecture design, and production code reviews, operating concurrently alongside engineering roles.',
     technologies: ['Mentorship', 'Code Reviews', 'System Design', 'React', 'Node.js', 'Git'],
-    icon: GraduationCap,
+    logo: utpattiLogo,
     concurrentNote: 'Concurrent with Mittarv & Travels and Payments',
   },
 ];
@@ -139,56 +143,73 @@ export function WorkSection() {
             </div>
 
             <div className="timeline-list">
-              {companyExperiences.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="timeline-row">
-                    <div className="timeline-date-col">
-                      <span className="timeline-date-text">{item.date}</span>
-                    </div>
+              {companyExperiences.map((item) => (
+                <div key={item.id} className="timeline-row">
+                  <div className="timeline-date-col">
+                    <span className="timeline-date-text">{item.date}</span>
+                  </div>
 
-                    <div className="timeline-spine-col">
-                      <div className="timeline-spine-line" />
-                      <div className="timeline-circle">
-                        <Icon className="timeline-circle-icon" />
-                      </div>
-                    </div>
-
-                    <div className="timeline-card-col">
-                      <div className="timeline-card">
-                        <div className="timeline-mobile-date">{item.date}</div>
-
-                        <div className="timeline-card-header">
-                          <h3 className="timeline-card-title">{item.title}</h3>
-                          {item.isCurrent && (
-                            <span className="timeline-current-pill">
-                              <span className="timeline-current-dot" />
-                              Current
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="timeline-card-company">
-                          <Building2 className="w-4 h-4" />
-                          <span>{item.company}</span>
-                        </div>
-
-                        <p className="timeline-card-desc">{item.description}</p>
-
-                        {item.technologies && item.technologies.length > 0 && (
-                          <div className="timeline-tech-list">
-                            {item.technologies.map((tech, i) => (
-                              <span key={i} className="timeline-tech-tag">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                  <div className="timeline-spine-col">
+                    <div className="timeline-spine-line" />
+                    <div
+                      className="timeline-circle"
+                      style={item.logoBg ? { backgroundColor: item.logoBg } : undefined}
+                    >
+                      <Image
+                        src={item.logo}
+                        alt={item.company}
+                        width={24}
+                        height={24}
+                        className="timeline-circle-logo"
+                      />
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="timeline-card-col">
+                    <div className="timeline-card">
+                      <div className="timeline-mobile-date">{item.date}</div>
+
+                      <div className="timeline-card-header">
+                        <h3 className="timeline-card-title">{item.title}</h3>
+                        {item.isCurrent && (
+                          <span className="timeline-current-pill">
+                            <span className="timeline-current-dot" />
+                            Current
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="timeline-card-company-row">
+                        <div
+                          className="timeline-card-logo-badge"
+                          style={item.logoBg ? { backgroundColor: item.logoBg } : undefined}
+                        >
+                          <Image
+                            src={item.logo}
+                            alt={item.company}
+                            width={32}
+                            height={18}
+                            className="timeline-badge-logo-img"
+                          />
+                        </div>
+                        <span className="timeline-card-company-name">{item.company}</span>
+                      </div>
+
+                      <p className="timeline-card-desc">{item.description}</p>
+
+                      {item.technologies && item.technologies.length > 0 && (
+                        <div className="timeline-tech-list">
+                          {item.technologies.map((tech, i) => (
+                            <span key={i} className="timeline-tech-tag">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -220,56 +241,67 @@ export function WorkSection() {
             </div>
 
             <div className="timeline-list">
-              {mentorshipExperiences.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.id} className="timeline-row">
-                    <div className="timeline-date-col">
-                      <span className="timeline-date-text">{item.date}</span>
-                    </div>
+              {mentorshipExperiences.map((item) => (
+                <div key={item.id} className="timeline-row">
+                  <div className="timeline-date-col">
+                    <span className="timeline-date-text">{item.date}</span>
+                  </div>
 
-                    <div className="timeline-spine-col">
-                      <div className="timeline-spine-line" />
-                      <div className="timeline-circle">
-                        <Icon className="timeline-circle-icon" />
-                      </div>
-                    </div>
-
-                    <div className="timeline-card-col">
-                      <div className="timeline-card">
-                        <div className="timeline-mobile-date">{item.date}</div>
-
-                        <div className="timeline-card-header">
-                          <h3 className="timeline-card-title">{item.title}</h3>
-                        </div>
-
-                        <div className="timeline-card-company">
-                          <GraduationCap className="w-4 h-4" />
-                          <span>{item.company}</span>
-                        </div>
-
-                        {item.concurrentNote && (
-                          <div className="timeline-concurrent-note">
-                            <span>⚡ {item.concurrentNote}</span>
-                          </div>
-                        )}
-
-                        <p className="timeline-card-desc">{item.description}</p>
-
-                        {item.technologies && item.technologies.length > 0 && (
-                          <div className="timeline-tech-list">
-                            {item.technologies.map((tech, i) => (
-                              <span key={i} className="timeline-tech-tag">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                  <div className="timeline-spine-col">
+                    <div className="timeline-spine-line" />
+                    <div className="timeline-circle">
+                      <Image
+                        src={item.logo}
+                        alt={item.company}
+                        width={24}
+                        height={24}
+                        className="timeline-circle-logo"
+                      />
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="timeline-card-col">
+                    <div className="timeline-card">
+                      <div className="timeline-mobile-date">{item.date}</div>
+
+                      <div className="timeline-card-header">
+                        <h3 className="timeline-card-title">{item.title}</h3>
+                      </div>
+
+                      <div className="timeline-card-company-row">
+                        <div className="timeline-card-logo-badge">
+                          <Image
+                            src={item.logo}
+                            alt={item.company}
+                            width={32}
+                            height={18}
+                            className="timeline-badge-logo-img"
+                          />
+                        </div>
+                        <span className="timeline-card-company-name">{item.company}</span>
+                      </div>
+
+                      {item.concurrentNote && (
+                        <div className="timeline-concurrent-note">
+                          <span>⚡ {item.concurrentNote}</span>
+                        </div>
+                      )}
+
+                      <p className="timeline-card-desc">{item.description}</p>
+
+                      {item.technologies && item.technologies.length > 0 && (
+                        <div className="timeline-tech-list">
+                          {item.technologies.map((tech, i) => (
+                            <span key={i} className="timeline-tech-tag">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

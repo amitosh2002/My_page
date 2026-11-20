@@ -298,6 +298,57 @@
   stroke-width: 2.2;
 }
 
+/* Circle Logo */
+.timeline-circle-logo {
+  max-width: 22px;
+  max-height: 22px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Card Company Row with Logo Badge */
+.timeline-card-company-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.timeline-card-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  height: 26px;
+  min-width: 36px;
+}
+
+:is(.dark .timeline-card-logo-badge) {
+  background-color: #0f172a;
+  border-color: #334155;
+}
+
+.timeline-badge-logo-img {
+  height: 16px;
+  width: auto;
+  max-width: 65px;
+  object-fit: contain;
+}
+
+.timeline-card-company-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+:is(.dark .timeline-card-company-name) {
+  color: #60a5fa;
+}
+
 /* ==========================================================================
    Right Column: White Card with Pointer Notch
    ========================================================================== */
