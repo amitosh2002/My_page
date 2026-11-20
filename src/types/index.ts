@@ -20,5 +20,8 @@ export interface WorkExperience {
   technologies: string[];
   current: boolean;
   createdAt: string;
+  isSubBranch?: boolean;
+  subBranchLabel?: string;
+  concurrentWith?: string;
 }
 

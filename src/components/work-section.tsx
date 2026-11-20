@@ -2,109 +2,129 @@
 
 import { WorkExperience } from '@/types';
 import {
-  BarChart3,
-  Globe,
-  Code2,
-  Clock,
   Rocket,
-  Briefcase,
+  CreditCard,
+  GraduationCap,
+  Code2,
   Building2,
-  Calendar,
+  GitBranch,
+  GitFork,
+  CheckCircle2,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { getWorkExperiences } from '@/lib/data-storage';
+import { getWorkExperiences, saveWorkExperiences } from '@/lib/data-storage';
 import './WorkSection.css';
 
-// Default milestones used as a fallback if no items are saved in storage
-const fallbackExperiences: WorkExperience[] = [
+// Career timeline with ShipIQ, Travels & Payments, Mittarv, and Utpatti Sub-Branch
+const defaultExperiences: WorkExperience[] = [
   {
     id: '1',
-    company: 'Hora Workspace',
-    position: 'Full Stack Developer',
+    company: 'ShipIQ',
+    position: 'Software Engineer',
     description:
-      'Architected scalable backend microservices, modular workspace management platforms, and real-time collaborative boards with Next.js and Node.js.',
-    startDate: '2024-01-01',
+      'Leading frontend and full-stack architecture for shipping intelligence, logistics tracking automation, and high-performance analytics dashboards.',
+    startDate: '2026-08-01',
     current: true,
-    technologies: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
     createdAt: new Date().toISOString(),
   },
   {
     id: '2',
-    company: 'Namaste India Portal',
-    position: 'Frontend Developer & UI Specialist',
+    company: 'Travels and Payments',
+    position: 'Software Developer',
     description:
-      'Engineered dynamic interactive web experiences, optimized rendering pipelines, and developed responsive, mobile-first design systems.',
-    startDate: '2023-01-01',
-    endDate: '2023-12-31',
+      'Engineered secure payment processing workflows, booking system modules, and responsive checkout experiences with high reliability and throughput.',
+    startDate: '2026-05-01',
+    endDate: '2026-07-31',
     current: false,
-    technologies: ['React', 'JavaScript', 'SCSS', 'Redux Toolkit', 'REST API'],
+    concurrentWith: 'Utpatti Fellowship Program',
+    technologies: ['React', 'TypeScript', 'Payment Gateways', 'Tailwind CSS', 'REST API'],
     createdAt: new Date().toISOString(),
   },
   {
     id: '3',
-    company: 'Recode Platform',
-    position: 'Software Engineering Intern',
+    company: 'Utpatti Fellowship Program',
+    position: 'Technical Mentor',
     description:
-      'Developed online code execution modules, interactive quiz assessments, and student progress dashboards within an Agile development workflow.',
-    startDate: '2022-06-01',
-    endDate: '2022-12-31',
+      'Served as Technical Mentor guiding fellows in modern web engineering, architecture design, and production code reviews, operating concurrently alongside roles at Mittarv and Travels & Payments.',
+    startDate: '2025-03-01',
+    endDate: '2025-10-31',
     current: false,
-    technologies: ['Node.js', 'Express', 'React', 'MongoDB', 'Jira'],
+    isSubBranch: true,
+    subBranchLabel: 'Sub-branch from Mittarv & Travels and Payments',
+    concurrentWith: 'Mittarv & Travels and Payments',
+    technologies: ['Mentorship', 'Code Reviews', 'System Design', 'React', 'Node.js', 'Git'],
     createdAt: new Date().toISOString(),
   },
   {
     id: '4',
-    company: 'Independent Developer',
-    position: 'Open Source & Web Development',
+    company: 'Mittarv',
+    position: 'Software Developer',
     description:
-      'Created open-source UI libraries, modern theme designs, and cross-platform Flutter applications for web and mobile platforms.',
-    startDate: '2021-08-01',
-    endDate: '2022-05-31',
+      'Developed responsive user-facing product features, modular frontend state management, and reusable UI components across the platform.',
+    startDate: '2025-02-01',
+    endDate: '2025-04-30',
     current: false,
-    technologies: ['Flutter', 'Dart', 'JavaScript', 'CSS3', 'Git'],
+    concurrentWith: 'Utpatti Fellowship Program',
+    technologies: ['React', 'JavaScript', 'Node.js', 'Redux', 'SCSS'],
     createdAt: new Date().toISOString(),
   },
 ];
 
 export function WorkSection() {
-  const [experiences, setExperiences] = useState<WorkExperience[]>(fallbackExperiences);
+  const [experiences, setExperiences] = useState<WorkExperience[]>(defaultExperiences);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const stored = getWorkExperiences();
-    if (stored && stored.length > 0) {
-      const sorted = [...stored].sort((a, b) => {
-        if (a.current && !b.current) return -1;
-        if (!a.current && b.current) return 1;
-        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
-      });
-      setExperiences(sorted);
+    // If stored contains the updated experiences, use them; otherwise initialize with defaultExperiences
+    if (stored && stored.length > 0 && stored.some((e) => e.company.toLowerCase().includes('shipiq'))) {
+      setExperiences(stored);
+    } else {
+      saveWorkExperiences(defaultExperiences);
+      setExperiences(defaultExperiences);
     }
   }, []);
 
-  // Format compact year range for the left column (e.g. "2024 - till" or "2022-2023")
-  const formatYearRange = (startDate: string, endDate?: string, current?: boolean) => {
-    const startYear = new Date(startDate).getFullYear();
-    if (isNaN(startYear)) return startDate;
-    if (current) return `${startYear}-till`;
-    if (!endDate) return `${startYear}`;
-    const endYear = new Date(endDate).getFullYear();
-    return isNaN(endYear) ? `${startYear}` : `${startYear}-${endYear}`;
+  // Format custom date ranges matching user requirements
+  const formatTimelineDate = (experience: WorkExperience) => {
+    const company = experience.company.toLowerCase();
+    if (company.includes('shipiq')) {
+      return 'Aug 2026 - Present';
+    }
+    if (company.includes('travel')) {
+      return 'May - Jul 2026';
+    }
+    if (company.includes('utpatti')) {
+      return 'Mar - Oct';
+    }
+    if (company.includes('mittarv')) {
+      return 'Feb - Apr 2025';
+    }
+    const startYear = new Date(experience.startDate).getFullYear();
+    if (experience.current) return `${startYear} - Present`;
+    if (!experience.endDate) return `${startYear}`;
+    const endYear = new Date(experience.endDate).getFullYear();
+    return isNaN(endYear) || startYear === endYear ? `${startYear}` : `${startYear}-${endYear}`;
   };
 
-  // Detailed month + year for secondary display
-  const formatDetailedDate = (dateString: string) => {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return dateString;
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
-
-  // Sequence of icons matching the reference image (Chart, Globe, Code, Clock)
-  const getTimelineIcon = (index: number) => {
-    const icons = [BarChart3, Globe, Code2, Clock, Rocket, Briefcase];
-    const IconComponent = icons[index % icons.length];
-    return <IconComponent className="timeline-badge-icon" />;
+  // Icon mapping
+  const getTimelineIcon = (experience: WorkExperience) => {
+    const company = experience.company.toLowerCase();
+    if (experience.isSubBranch || company.includes('utpatti')) {
+      return <GraduationCap className="timeline-badge-icon" />;
+    }
+    if (company.includes('shipiq')) {
+      return <Rocket className="timeline-badge-icon" />;
+    }
+    if (company.includes('travel')) {
+      return <CreditCard className="timeline-badge-icon" />;
+    }
+    if (company.includes('mittarv')) {
+      return <Code2 className="timeline-badge-icon" />;
+    }
+    return <Building2 className="timeline-badge-icon" />;
   };
 
   return (
@@ -125,11 +145,11 @@ export function WorkSection() {
             </h2>
           </div>
           <p className="timeline-subtitle">
-            A chronological journey of professional milestones, leadership roles, and impactful engineering contributions.
+            A chronological timeline of professional experience, active roles, and concurrent technical mentorship.
           </p>
         </div>
 
-        {/* Timeline list or empty state */}
+        {/* Timeline list */}
         {experiences.length === 0 ? (
           <div className="timeline-empty">
             <Building2 className="timeline-empty-icon" />
@@ -138,35 +158,79 @@ export function WorkSection() {
         ) : (
           <div className="timeline-list">
             {experiences.map((experience, index) => {
-              const yearRange = formatYearRange(
-                experience.startDate,
-                experience.endDate,
-                experience.current
-              );
+              const dateRange = formatTimelineDate(experience);
+              const isSubBranch = experience.isSubBranch;
 
               return (
-                <div key={experience.id || index} className="timeline-item">
+                <div
+                  key={experience.id || index}
+                  className={`timeline-item ${isSubBranch ? 'timeline-item-subbranch' : ''}`}
+                >
                   {/* Left Column: Date Range */}
                   <div className="timeline-date-col">
-                    <span className="timeline-date-text">{yearRange}</span>
+                    <div className="timeline-date-text">{dateRange}</div>
+                    {isSubBranch && (
+                      <span className="timeline-date-subbranch-pill">
+                        <GitBranch className="w-3 h-3" /> Sub-Branch
+                      </span>
+                    )}
                   </div>
 
                   {/* Center Column: Spine Line and Circular Badge */}
                   <div className="timeline-spine-col">
                     <div className="timeline-line" />
-                    <div className="timeline-badge">
-                      {getTimelineIcon(index)}
+                    
+                    {/* Visual branch curve connecting sub-branch to the main spine */}
+                    {isSubBranch && (
+                      <svg
+                        className="timeline-branch-curve-svg"
+                        viewBox="0 0 32 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M 2 2 C 2 14, 18 16, 20 24"
+                          stroke="#a855f7"
+                          strokeWidth="2.5"
+                          strokeDasharray="3 3"
+                        />
+                      </svg>
+                    )}
+
+                    <div
+                      className={`timeline-badge ${
+                        isSubBranch ? 'timeline-badge-subbranch' : ''
+                      }`}
+                    >
+                      {getTimelineIcon(experience)}
                     </div>
                   </div>
 
                   {/* Right Column: Card with Pointer Notch */}
                   <div className="timeline-card-col">
-                    <div className="timeline-card">
+                    <div
+                      className={`timeline-card ${
+                        isSubBranch ? 'timeline-card-subbranch' : ''
+                      }`}
+                    >
                       {/* Mobile Date indicator (visible on small screens) */}
                       <div className="timeline-mobile-date">
-                        {yearRange} • {formatDetailedDate(experience.startDate)} –{' '}
-                        {experience.current ? 'Present' : experience.endDate && formatDetailedDate(experience.endDate)}
+                        {dateRange}
+                        {isSubBranch && ' • Sub-Branch (Mentorship)'}
                       </div>
+
+                      {/* Sub-branch banner header */}
+                      {isSubBranch && (
+                        <div className="timeline-branch-banner">
+                          <span className="timeline-branch-pill">
+                            <GitBranch className="w-3.5 h-3.5" /> Sub-Branch
+                          </span>
+                          <span className="timeline-branch-note">
+                            Concurrent with Mittarv (Feb–Apr) & Travels and Payments (May–Jul)
+                          </span>
+                        </div>
+                      )}
 
                       {/* Header with Title and Current Badge */}
                       <div className="timeline-card-header">
@@ -180,10 +244,27 @@ export function WorkSection() {
                       </div>
 
                       {/* Company Name */}
-                      <div className="timeline-card-company">
-                        <Building2 className="w-4 h-4" />
+                      <div
+                        className={`timeline-card-company ${
+                          isSubBranch ? 'timeline-card-company-purple' : ''
+                        }`}
+                      >
+                        {isSubBranch ? (
+                          <GraduationCap className="w-4 h-4" />
+                        ) : (
+                          <Building2 className="w-4 h-4" />
+                        )}
                         <span>{experience.company}</span>
                       </div>
+
+                      {/* Overlap / Concurrent Tag on linked roles */}
+                      {!isSubBranch && experience.concurrentWith && (
+                        <div>
+                          <span className="timeline-overlap-tag">
+                            <GitFork className="w-3.5 h-3.5" /> Concurrent: Technical Mentor @ Utpatti Fellowship
+                          </span>
+                        </div>
+                      )}
 
                       {/* Description */}
                       <p className="timeline-card-desc">{experience.description}</p>
@@ -192,7 +273,12 @@ export function WorkSection() {
                       {experience.technologies && experience.technologies.length > 0 && (
                         <div className="timeline-tech-list">
                           {experience.technologies.map((tech, i) => (
-                            <span key={i} className="timeline-tech-tag">
+                            <span
+                              key={i}
+                              className={`timeline-tech-tag ${
+                                isSubBranch ? 'timeline-tech-tag-purple' : ''
+                              }`}
+                            >
                               {tech}
                             </span>
                           ))}

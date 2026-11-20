@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Experience / Company Timeline - Matching Design Reference
+   Experience / Company Timeline - Matching Design Reference & Sub-Branch
    ========================================================================== */
 
 .timeline-section {
@@ -132,6 +132,12 @@
   margin-bottom: 0;
 }
 
+/* Sub-branch specific row styling */
+.timeline-item-subbranch {
+  margin-top: -6px;
+  margin-bottom: 24px;
+}
+
 /* Left Date Column */
 .timeline-date-col {
   padding-top: 14px;
@@ -149,6 +155,28 @@
 
 :is(.dark .timeline-date-text) {
   color: #94a3b8;
+}
+
+/* Sub-branch date tag */
+.timeline-date-subbranch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #7c3aed;
+  background-color: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+:is(.dark .timeline-date-subbranch-pill) {
+  background-color: rgba(124, 58, 237, 0.15);
+  color: #c4b5fd;
+  border-color: rgba(196, 181, 253, 0.25);
 }
 
 /* Center Spine Column */
@@ -179,6 +207,17 @@
   display: none;
 }
 
+/* Branch curve connector for sub-branch items */
+.timeline-branch-curve-svg {
+  position: absolute;
+  top: -8px;
+  left: calc(50% - 1px);
+  width: 32px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Circle Badge on the spine */
 .timeline-badge {
   width: 38px;
@@ -190,7 +229,7 @@
   align-items: center;
   justify-content: center;
   color: #2563eb;
-  z-index: 1;
+  z-index: 2;
   margin-top: 6px;
   box-shadow: 0 0 0 4px #eff6ff, 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -212,6 +251,30 @@
 :is(.dark .timeline-item:hover .timeline-badge) {
   border-color: #60a5fa;
   box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.25);
+}
+
+/* Sub-branch distinct purple badge */
+.timeline-badge-subbranch {
+  border-color: #a855f7;
+  color: #9333ea;
+  box-shadow: 0 0 0 4px #faf5ff, 0 2px 4px rgba(168, 85, 247, 0.15);
+}
+
+:is(.dark .timeline-badge-subbranch) {
+  background-color: #1e1b4b;
+  border-color: #a855f7;
+  color: #c084fc;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-item-subbranch:hover .timeline-badge-subbranch {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 6px #ede9fe, 0 4px 10px rgba(124, 58, 237, 0.2);
+}
+
+:is(.dark .timeline-item-subbranch:hover .timeline-badge-subbranch) {
+  border-color: #c084fc;
+  box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.3);
 }
 
 .timeline-badge-icon {
@@ -290,6 +353,76 @@
   border-right-color: #334155;
 }
 
+/* Sub-branch card custom styling */
+.timeline-card-subbranch {
+  border-left: 4px solid #a855f7;
+  border-color: #f3e8ff #eef2f6 #eef2f6 #a855f7;
+  background: linear-gradient(to right, #fcfaff, #ffffff 18%);
+}
+
+:is(.dark .timeline-card-subbranch) {
+  border-left-color: #a855f7;
+  border-color: #4c1d95 #334155 #334155 #a855f7;
+  background: linear-gradient(to right, #1b1638, #1e293b 22%);
+}
+
+.timeline-card-subbranch:hover {
+  border-left-color: #7c3aed;
+  border-color: #e9d5ff #cbd5e1 #cbd5e1 #7c3aed;
+  box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+}
+
+:is(.dark .timeline-card-subbranch:hover) {
+  border-left-color: #c084fc;
+  box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.25);
+}
+
+/* Sub-branch top banner */
+.timeline-branch-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #ede9fe;
+}
+
+:is(.dark .timeline-branch-banner) {
+  border-bottom-color: #3b2c6b;
+}
+
+.timeline-branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 2.5px 8px;
+  border-radius: 9999px;
+  background-color: #f5f3ff;
+  color: #7c3aed;
+  border: 1px solid #ddd6fe;
+}
+
+:is(.dark .timeline-branch-pill) {
+  background-color: rgba(124, 58, 237, 0.18);
+  color: #c4b5fd;
+  border-color: rgba(196, 181, 253, 0.3);
+}
+
+.timeline-branch-note {
+  font-size: 0.8rem;
+  color: #6d28d9;
+  font-weight: 500;
+}
+
+:is(.dark .timeline-branch-note) {
+  color: #c4b5fd;
+}
+
 /* Card Header */
 .timeline-card-header {
   display: flex;
@@ -357,7 +490,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   color: #2563eb;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -365,6 +498,35 @@
 
 :is(.dark .timeline-card-company) {
   color: #60a5fa;
+}
+
+.timeline-card-company-purple {
+  color: #7c3aed;
+}
+
+:is(.dark .timeline-card-company-purple) {
+  color: #a78bfa;
+}
+
+/* Linked / Concurrent Overlap Badge on parent cards */
+.timeline-overlap-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #6d28d9;
+  background-color: #f5f3ff;
+  border: 1px solid #ede9fe;
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 10px;
+}
+
+:is(.dark .timeline-overlap-tag) {
+  color: #c4b5fd;
+  background-color: rgba(124, 58, 237, 0.14);
+  border-color: rgba(196, 181, 253, 0.22);
 }
 
 /* Mobile-only date display inside card */
@@ -431,6 +593,16 @@
   color: #f8fafc;
 }
 
+.timeline-tech-tag-purple {
+  color: #6d28d9;
+  background-color: #f5f3ff;
+}
+
+:is(.dark .timeline-tech-tag-purple) {
+  color: #c4b5fd;
+  background-color: rgba(124, 58, 237, 0.16);
+}
+
 /* Empty State */
 .timeline-empty {
   text-align: center;
@@ -477,6 +649,10 @@
     grid-template-columns: 38px 1fr;
     gap: 14px;
     margin-bottom: 24px;
+  }
+
+  .timeline-item-subbranch {
+    margin-top: 0;
   }
 
   /* Hide left date column on mobile */
