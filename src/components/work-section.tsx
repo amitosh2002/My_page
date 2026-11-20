@@ -5,6 +5,8 @@ import Image, { StaticImageData } from 'next/image';
 import {
   Briefcase,
   Users,
+  Building2,
+  GraduationCap,
 } from 'lucide-react';
 
 import shipiqLogo from '@/theme/shipiq.png';
@@ -49,7 +51,7 @@ const companyExperiences: TimelineItem[] = [
       'Engineered secure payment processing workflows, booking system modules, and responsive checkout experiences with high reliability and throughput.',
     technologies: ['React', 'TypeScript', 'Payment Gateways', 'Tailwind CSS', 'REST API'],
     logo: tpLogo,
-    logoBg: '#0f172a', // Dark container so white SVG logo shines
+    logoBg: '#0f172a', // Dark container for the white SVG logo
   },
   {
     id: 'mittarv',
@@ -145,26 +147,29 @@ export function WorkSection() {
             <div className="timeline-list">
               {companyExperiences.map((item) => (
                 <div key={item.id} className="timeline-row">
+                  {/* Left Date Column */}
                   <div className="timeline-date-col">
                     <span className="timeline-date-text">{item.date}</span>
                   </div>
 
+                  {/* Center Spine Column with Logo Box (replacing circle) */}
                   <div className="timeline-spine-col">
                     <div className="timeline-spine-line" />
                     <div
-                      className="timeline-circle"
+                      className="timeline-logo-box"
                       style={item.logoBg ? { backgroundColor: item.logoBg } : undefined}
                     >
                       <Image
                         src={item.logo}
                         alt={item.company}
-                        width={24}
-                        height={24}
-                        className="timeline-circle-logo"
+                        width={38}
+                        height={22}
+                        className="timeline-box-img"
                       />
                     </div>
                   </div>
 
+                  {/* Right Column: Clean White Card (no logo inside) */}
                   <div className="timeline-card-col">
                     <div className="timeline-card">
                       <div className="timeline-mobile-date">{item.date}</div>
@@ -179,20 +184,9 @@ export function WorkSection() {
                         )}
                       </div>
 
-                      <div className="timeline-card-company-row">
-                        <div
-                          className="timeline-card-logo-badge"
-                          style={item.logoBg ? { backgroundColor: item.logoBg } : undefined}
-                        >
-                          <Image
-                            src={item.logo}
-                            alt={item.company}
-                            width={32}
-                            height={18}
-                            className="timeline-badge-logo-img"
-                          />
-                        </div>
-                        <span className="timeline-card-company-name">{item.company}</span>
+                      <div className="timeline-card-company">
+                        <Building2 className="w-4 h-4" />
+                        <span>{item.company}</span>
                       </div>
 
                       <p className="timeline-card-desc">{item.description}</p>
@@ -243,23 +237,26 @@ export function WorkSection() {
             <div className="timeline-list">
               {mentorshipExperiences.map((item) => (
                 <div key={item.id} className="timeline-row">
+                  {/* Left Date Column */}
                   <div className="timeline-date-col">
                     <span className="timeline-date-text">{item.date}</span>
                   </div>
 
+                  {/* Center Spine Column with Logo Box (replacing circle) */}
                   <div className="timeline-spine-col">
                     <div className="timeline-spine-line" />
-                    <div className="timeline-circle">
+                    <div className="timeline-logo-box">
                       <Image
                         src={item.logo}
                         alt={item.company}
-                        width={24}
-                        height={24}
-                        className="timeline-circle-logo"
+                        width={38}
+                        height={22}
+                        className="timeline-box-img"
                       />
                     </div>
                   </div>
 
+                  {/* Right Column: Clean White Card (no logo inside) */}
                   <div className="timeline-card-col">
                     <div className="timeline-card">
                       <div className="timeline-mobile-date">{item.date}</div>
@@ -268,17 +265,9 @@ export function WorkSection() {
                         <h3 className="timeline-card-title">{item.title}</h3>
                       </div>
 
-                      <div className="timeline-card-company-row">
-                        <div className="timeline-card-logo-badge">
-                          <Image
-                            src={item.logo}
-                            alt={item.company}
-                            width={32}
-                            height={18}
-                            className="timeline-badge-logo-img"
-                          />
-                        </div>
-                        <span className="timeline-card-company-name">{item.company}</span>
+                      <div className="timeline-card-company">
+                        <GraduationCap className="w-4 h-4" />
+                        <span>{item.company}</span>
                       </div>
 
                       {item.concurrentNote && (

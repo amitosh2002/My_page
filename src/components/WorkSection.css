@@ -190,7 +190,7 @@
 }
 
 /* ==========================================================================
-   Timeline List & Grid (Date - Line/Circle - Card)
+   Timeline List & Grid (Date - Line/Box Logo - Card)
    ========================================================================== */
 
 .timeline-list {
@@ -201,7 +201,7 @@
 
 .timeline-row {
   display: grid;
-  grid-template-columns: 140px 60px 1fr;
+  grid-template-columns: 140px 64px 1fr;
   align-items: flex-start;
   position: relative;
   margin-bottom: 24px;
@@ -213,7 +213,7 @@
 
 /* Left Date Column */
 .timeline-date-col {
-  padding-top: 20px;
+  padding-top: 22px;
   padding-right: 20px;
   text-align: right;
 }
@@ -257,96 +257,46 @@
   display: none;
 }
 
-/* Circle Badge with Blue Border and White Background */
-.timeline-circle {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+/* Logo Box Badge on the spine (replacing the circle) */
+.timeline-logo-box {
+  width: 48px;
+  height: 32px;
+  border-radius: 7px;
   background-color: #ffffff;
-  border: 2px solid #60a5fa;
+  border: 1.5px solid #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2563eb;
   z-index: 1;
-  margin-top: 14px;
-  box-shadow: 0 0 0 3px #eff6ff, 0 2px 4px rgba(0, 0, 0, 0.04);
+  margin-top: 16px;
+  padding: 3px 6px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
   transition: all 0.25s ease;
 }
 
-:is(.dark .timeline-circle) {
+:is(.dark .timeline-logo-box) {
   background-color: #1e293b;
-  border-color: #3b82f6;
-  color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-color: #475569;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.timeline-row:hover .timeline-circle {
+.timeline-row:hover .timeline-logo-box {
   border-color: #2563eb;
-  box-shadow: 0 0 0 6px #dbeafe, 0 4px 8px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 4px #eff6ff, 0 4px 10px rgba(37, 99, 235, 0.15);
   transform: scale(1.08);
 }
 
-:is(.dark .timeline-row:hover .timeline-circle) {
+:is(.dark .timeline-row:hover .timeline-logo-box) {
   border-color: #60a5fa;
-  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
 }
 
-.timeline-circle-icon {
-  width: 17px;
-  height: 17px;
-  stroke-width: 2.2;
-}
-
-/* Circle Logo */
-.timeline-circle-logo {
-  max-width: 22px;
-  max-height: 22px;
+.timeline-box-img {
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
-}
-
-/* Card Company Row with Logo Badge */
-.timeline-card-company-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.timeline-card-logo-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3px 8px;
-  border-radius: 6px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  height: 26px;
-  min-width: 36px;
-}
-
-:is(.dark .timeline-card-logo-badge) {
-  background-color: #0f172a;
-  border-color: #334155;
-}
-
-.timeline-badge-logo-img {
-  height: 16px;
-  width: auto;
-  max-width: 65px;
-  object-fit: contain;
-}
-
-.timeline-card-company-name {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #2563eb;
-}
-
-:is(.dark .timeline-card-company-name) {
-  color: #60a5fa;
 }
 
 /* ==========================================================================
@@ -384,7 +334,7 @@
   box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.5);
 }
 
-/* Triangular pointer notch pointing left toward the circle */
+/* Triangular pointer notch pointing left toward the logo box */
 .timeline-card::before {
   content: '';
   position: absolute;
@@ -481,7 +431,7 @@
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-/* Company / Organization Subtitle */
+/* Company / Organization Subtitle (Clean Text without logo badge) */
 .timeline-card-company {
   font-size: 0.88rem;
   font-weight: 600;
@@ -593,7 +543,7 @@
   }
 
   .timeline-row {
-    grid-template-columns: 38px 1fr;
+    grid-template-columns: 46px 1fr;
     gap: 12px;
     margin-bottom: 20px;
   }
@@ -614,15 +564,11 @@
     left: 50%;
   }
 
-  .timeline-circle {
-    width: 34px;
-    height: 34px;
-    margin-top: 14px;
-  }
-
-  .timeline-circle-icon {
-    width: 15px;
-    height: 15px;
+  .timeline-logo-box {
+    width: 42px;
+    height: 28px;
+    margin-top: 18px;
+    padding: 2px 4px;
   }
 
   .timeline-card-col {
