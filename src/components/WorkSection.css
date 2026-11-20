@@ -1,17 +1,139 @@
 /* ==========================================================================
-   Company Timeline & Mentorship - Exact Pixel-Perfect Match with Reference Design
+   Company Timeline & Mentorship - With Guiding Principle & Tech Background SVGs
    ========================================================================== */
 
 .timeline-section {
   padding: 90px 20px 110px;
-  background-color: #f8fafc;
+  background: linear-gradient(112deg, #fff1bd 0%, #eff5df 34%, #e1f5f2 72%, #f8eaf3 100%);
   position: relative;
   overflow: hidden;
   transition: background-color 0.3s ease;
 }
 
 :is(.dark .timeline-section) {
-  background-color: #0b0f19;
+  background: linear-gradient(112deg, #fff1bd 0%, #eff5df 34%, #e1f5f2 72%, #f8eaf3 100%);
+}
+
+/* ==========================================================================
+   Interactive Background Coding SVGs (React, Python, Node, HTML, Parentheses)
+   ========================================================================== */
+
+.timeline-bg-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.timeline-bg-svg-symbol {
+  position: absolute;
+  color: #2563eb;
+  opacity: 0.055;
+  user-select: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+:is(.dark .timeline-bg-svg-symbol) {
+  color: #60a5fa;
+  opacity: 0.07;
+}
+
+.timeline-section:hover .timeline-bg-svg-symbol {
+  opacity: 0.09;
+}
+
+:is(.dark .timeline-section:hover .timeline-bg-svg-symbol) {
+  opacity: 0.11;
+}
+
+/* Specific SVG positions & floating keyframes */
+.svg-react {
+  top: 6%;
+  left: 3%;
+  width: 58px;
+  height: 58px;
+  animation: float-rotate 16s infinite linear;
+}
+
+.svg-html {
+  top: 18%;
+  right: 4%;
+  width: 52px;
+  height: 52px;
+  animation: float-reverse 10s infinite ease-in-out;
+}
+
+.svg-parentheses {
+  top: 36%;
+  left: 4%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 3.5rem;
+  font-weight: 800;
+  animation: float-slow 11s infinite ease-in-out 1s;
+}
+
+.svg-python {
+  top: 48%;
+  right: 3%;
+  width: 54px;
+  height: 54px;
+  animation: float-slow 12s infinite ease-in-out 0.5s;
+}
+
+.svg-node {
+  top: 66%;
+  left: 4%;
+  width: 52px;
+  height: 52px;
+  animation: float-reverse 9.5s infinite ease-in-out 1.5s;
+}
+
+.svg-braces {
+  top: 80%;
+  right: 5%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 3.2rem;
+  font-weight: 800;
+  animation: float-slow 10s infinite ease-in-out 2s;
+}
+
+.svg-terminal {
+  top: 94%;
+  left: 3%;
+  width: 48px;
+  height: 48px;
+  animation: float-reverse 11s infinite ease-in-out 0.8s;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(4deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(16px) rotate(-4deg);
+  }
+}
+
+@keyframes float-rotate {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
 }
 
 .timeline-container {
@@ -19,6 +141,84 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
+}
+
+/* ==========================================================================
+   Guiding Principle Banner (Code x Design = Impact)
+   ========================================================================== */
+
+.principle-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #172554 100%);
+  border: 1px solid rgba(59, 130, 246, 0.28);
+  border-radius: 16px;
+  padding: 38px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 55px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.25), 0 0 25px rgba(59, 130, 246, 0.12);
+}
+
+:is(.dark .principle-banner) {
+  background: linear-gradient(135deg, #090d16 0%, #130f2e 45%, #0e172a 100%);
+  border-color: rgba(96, 165, 250, 0.22);
+  box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(37, 99, 235, 0.15);
+}
+
+.principle-glow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 260px;
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.3), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.principle-content {
+  position: relative;
+  z-index: 1;
+}
+
+.principle-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #60a5fa;
+  background: rgba(37, 99, 235, 0.18);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  padding: 4px 14px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+}
+
+.principle-headline {
+  font-size: clamp(1.8rem, 3.8vw, 2.5rem);
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.principle-accent {
+  color: #38bdf8;
+  font-weight: 800;
+  margin: 0 6px;
+}
+
+.principle-description {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  color: #cbd5e1;
+  max-width: 660px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -508,13 +708,14 @@
 }
 
 .timeline-tech-tag {
-  font-size: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #334155;
   background-color: #f1f5f9;
   padding: 3px 9px;
   border-radius: 6px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 :is(.dark .timeline-tech-tag) {
@@ -523,13 +724,14 @@
 }
 
 .timeline-tech-tag:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  transform: translateY(-1px);
 }
 
 :is(.dark .timeline-tech-tag:hover) {
-  background-color: #1e293b;
-  color: #f8fafc;
+  background-color: #1e3a8a;
+  color: #bfdbfe;
 }
 
 /* ==========================================================================

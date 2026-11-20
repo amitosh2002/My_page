@@ -1,23 +1,21 @@
 'use client';
 
-import React, { useState, FormEvent, ChangeEvent, JSX } from 'react';
+import React, { JSX } from 'react';
 import Image from 'next/image';
 import {
   Code2,
-  Github,
-  Linkedin,
-  Play,
+  ArrowRight,
   TrendingUp,
   Sparkles,
   CheckSquare,
+  Database,
+  Smartphone,
+  ShieldCheck,
+  PanelsTopLeft,
+  Github,
+  Linkedin,
 } from 'lucide-react';
 import './Hero.scss';
-
-interface SocialLink {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}
 
 interface Feature {
   icon: React.ReactNode;
@@ -28,34 +26,6 @@ interface Feature {
 }
 
 export function Hero(): JSX.Element {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Email submitted:', email);
-  };
-
-  const handleScheduleCall = () => {
-    console.log('Schedule a call clicked');
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const socialLinks: SocialLink[] = [
-    {
-      href: 'https://github.com/amitosh2002',
-      icon: <Github size={18} />,
-      label: 'GitHub',
-    },
-    {
-      href: 'https://www.linkedin.com/in/amitosh-kumar-647654282/',
-      icon: <Linkedin size={18} />,
-      label: 'LinkedIn',
-    },
-  ];
-
   const features: Feature[] = [
     {
       icon: <Code2 size={24} />,
@@ -105,88 +75,38 @@ export function Hero(): JSX.Element {
       </div>
 
       <div className="hero__container">
-        {/* Left */}
-        <div className="hero__content">
-          <h1 className="hero__title">
-            Proven Partner for <br />
-            <span className="hero__title--highlight">
-              Full Stack Success
-            </span>
-          </h1>
+        <div className="hero__intro">
+          <div className="hero__portrait" aria-label="Portrait of Amitosh working at his desk">
+            <div className="hero__portrait-card" />
+            <div className="hero__portrait-tile hero__portrait-tile--a" aria-hidden="true" />
+            <div className="hero__portrait-tile hero__portrait-tile--b" aria-hidden="true" />
+            <div className="hero__portrait-tile hero__portrait-tile--c" aria-hidden="true" />
+            <div className="hero__portrait-tile hero__portrait-tile--d" aria-hidden="true" />
+            <div className="hero__portrait-tile hero__portrait-tile--e" aria-hidden="true" />
+            <div className="hero__portrait-main"><Image src="/dp_2.png" alt="Amitosh Kumar, full stack developer" fill priority sizes="(max-width: 768px) 80vw, 420px" /></div>
+            <div className="hero__portrait-socials">
+              <a href="https://github.com/amitosh2002" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><Github size={20} aria-hidden="true" /></a>
+              <a href="https://www.linkedin.com/in/amitosh-kumar-647654282/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><Linkedin size={20} aria-hidden="true" /></a>
+            </div>
+          </div>
 
-          <p className="hero__description">
-            Building modern web and mobile applications with cutting-edge
-            technologies. I help businesses accelerate growth while maximizing
-            efficiency through comprehensive development and creative solutions.
-          </p>
+          <div className="hero__copy">
+            <p className="hero__eyebrow">Full stack developer · India</p>
+            <h1 className="hero__title">Hi, I&apos;m Amitosh<span className="hero__title-dot">.</span><br /><span className="hero__title--highlight">Full Stack Developer<span className="hero__title-cursor">|</span></span></h1>
+            <p className="hero__description">
+              Creative and detail-oriented Full Stack Developer building intuitive, user-focused web and mobile experiences with modern technologies.
+            </p>
+            <div className="hero__intro-actions">
+              <a className="hero__portfolio-link" href="#work"><ArrowRight size={19} /><span>My Portfolio</span></a>
+            </div>
+          </div>
 
-        <form
-            className="hero__form"
-            action="https://formspree.io/f/mjgonlqo"
-            method="POST"
-          >
-            <input
-              type="email"
-              name="email"        // ✅ REQUIRED for Formspree
-              className="hero__input"
-              placeholder="Enter your email"
-              required
-            />
-
-            <button type="submit" className="hero__btn hero__btn--primary">
-              Get Started
-            </button>
-          </form>
-
-
-          <p className="hero__subtext">
-            We&apos;ll be in touch or feel free to{' '}
-            <button
-              type="button"
-              className="hero__link"
-              onClick={handleScheduleCall}
-            >
-              schedule a call now
-            </button>
-            .
-          </p>
-
-          <div className="hero__socials">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero__social-link"
-              >
-                {social.icon}
-                <span>{social.label}</span>
-              </a>
-            ))}
+          <div className="hero__manifesto">
+            <span className="hero__manifesto-label">The approach</span>
+            <p>I build contemporary web and mobile experiences where thoughtful design meets reliable engineering. I enjoy turning complex ideas into simple, useful products.</p>
           </div>
         </div>
 
-        {/* Right */}
-        <div className="hero__media">
-          <div className="hero__media-card">
-            <button
-              className="hero__play-btn"
-              type="button"
-              aria-label="Play video"
-            >
-              <Play size={24} fill="white" />
-            </button>
-
-            <Image
-              src="/dp_2.png"
-              alt="Team collaboration"
-              fill
-              className="hero__image"
-              priority
-            />
-          </div>
-        </div>
       </div>
 
       {/* Partners */}
@@ -200,44 +120,60 @@ export function Hero(): JSX.Element {
         </div>
       </div> */}
 
-      {/* Why Choose */}
+      {/* Quality services */}
       <div className="hero__why">
-        <h2 className="hero__why-title">Why Choose Me?</h2>
+        <div className="hero__quality-heading">
+          <div>
+            <span className="hero__quality-kicker">My expertise</span>
+            <h2 className="hero__why-title">My Quality Services</h2>
+          </div>
+          <a className="hero__quality-link" href="#work"><span>View my work</span><ArrowRight size={18} /></a>
+        </div>
 
-        <div className="hero__features">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`hero__feature ${
-                feature.isHighlight ? 'hero__feature--highlight' : ''
-              }`}
-            >
-              <div
-                className={`hero__feature-icon hero__feature-icon--${feature.iconColor}`}
-              >
-                {feature.icon}
+        <div className="hero__quality-layout">
+          <div className="hero__features">
+            {features.map((feature, index) => (
+              <article key={index} className={`hero__feature hero__feature--quality hero__feature--${feature.iconColor}`}>
+                <div className={`hero__feature-icon hero__feature-icon--${feature.iconColor}`}>{feature.icon}</div>
+                <div>
+                  <h3 className="hero__feature-title">{feature.title}</h3>
+                  <p className="hero__feature-desc">{feature.description}</p>
+                </div>
+                <span className="hero__feature-index">0{index + 1}</span>
+              </article>
+            ))}
+          </div>
+          <div className="hero__quality-gallery" aria-label="Selected project interfaces">
+            <article className="hero__service-visual hero__service-visual--architecture">
+              <div className="hero__visual-heading"><span>BUILT END TO END</span><strong>One connected system</strong></div>
+              <div className="hero__architecture-flow">
+                <div className="hero__architecture-node"><PanelsTopLeft size={22} /><span>Interface</span></div>
+                <i />
+                <div className="hero__architecture-node"><Code2 size={22} /><span>Application</span></div>
+                <i />
+                <div className="hero__architecture-node"><Database size={22} /><span>Data</span></div>
               </div>
-              <h3 className="hero__feature-title">{feature.title}</h3>
-              <p className="hero__feature-desc">{feature.description}</p>
-            </div>
-          ))}
+              <div className="hero__visual-footnote"><span className="hero__status-dot" /> Designed to scale with your product</div>
+            </article>
+            <article className="hero__service-visual hero__service-visual--responsive">
+              <div className="hero__visual-heading"><span>RESPONSIVE BY DEFAULT</span><strong>Every screen, considered</strong></div>
+              <div className="hero__device-scene">
+                <div className="hero__browser-mock"><div className="hero__mock-top"><b /><b /><b /><span /></div><div className="hero__mock-layout"><i /><div><b /><b /><span /><span /><span /></div></div></div>
+                <div className="hero__phone-mock"><div /><Smartphone size={19} /><span /><span /><span /></div>
+              </div>
+            </article>
+            <article className="hero__service-visual hero__service-visual--quality">
+              <div className="hero__visual-heading"><span>QUALITY BUILT IN</span><strong>Reliable from day one</strong></div>
+              <div className="hero__quality-checklist">
+                <div><ShieldCheck size={18} /><span>Accessible, responsive UI</span><b>READY</b></div>
+                <div><Code2 size={18} /><span>Clean, maintainable code</span><b>READY</b></div>
+                <div><Database size={18} /><span>Secure data handling</span><b>READY</b></div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
 
-      {/* Principle */}
-      <div className="hero__principle">
-        <div className="hero__principle-blob" />
-        <div className="hero__principle-content">
-          <p className="hero__principle-subtitle">My guiding principle</p>
-          <h2 className="hero__principle-title">
-            Code × Design = Impact
-          </h2>
-          <p className="hero__principle-desc">
-            I leverage modern technologies and proven development strategies to
-            build applications that are designed to perform and scale.
-          </p>
-        </div>
-      </div>
     </section>
   );
 }
