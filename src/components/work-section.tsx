@@ -6,7 +6,6 @@ import {
   Briefcase,
   Users,
   Calendar,
-  Sparkles,
 } from 'lucide-react';
 
 import shipiqLogo from '@/theme/shipiq.png';
@@ -38,7 +37,7 @@ const companyExperiences: TimelineItem[] = [
     company: 'ShipIQ',
     description:
       'Leading frontend and full-stack development for shipping logistics intelligence, tracking automation, and high-performance analytics dashboards.',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+    technologies: ['React', 'Python', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
     logo: shipiqLogo,
     isCurrent: true,
   },
@@ -166,10 +165,6 @@ export function WorkSection() {
         <div className="principle-banner">
           <div className="principle-glow" />
           <div className="principle-content">
-            <div className="principle-eyebrow">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>My Guiding Principle</span>
-            </div>
             <h3 className="principle-headline">
               Code <span className="principle-accent">×</span> Design <span className="principle-accent">=</span> Impact
             </h3>

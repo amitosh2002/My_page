@@ -785,3 +785,56 @@
     top: 22px;
   }
 }
+
+/* Warm theme for the principle banner and experience filters */
+.timeline-section .principle-banner,
+:is(.dark .timeline-section .principle-banner) {
+  background: linear-gradient(115deg, rgba(255, 248, 221, .96), rgba(232, 247, 237, .96) 55%, rgba(232, 247, 247, .96));
+  border: 1px solid rgba(206, 157, 71, .42);
+  border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(111, 93, 51, .11);
+}
+.timeline-section .principle-glow { background: radial-gradient(ellipse at center, rgba(255, 183, 79, .26), transparent 70%); }
+.timeline-section .principle-eyebrow,
+:is(.dark .timeline-section .principle-eyebrow) {
+  color: #9d6025;
+  background: rgba(255, 255, 255, .54);
+  border-color: rgba(210, 157, 74, .4);
+}
+.timeline-section .principle-headline,
+:is(.dark .timeline-section .principle-headline) { color: #22282a; }
+.timeline-section .principle-accent,
+:is(.dark .timeline-section .principle-accent) { color: #da8734; }
+.timeline-section .principle-description,
+:is(.dark .timeline-section .principle-description) { color: #5f6969; }
+.timeline-section .timeline-filter-btn,
+:is(.dark .timeline-section .timeline-filter-btn) {
+  color: #56635f;
+  background: rgba(255, 255, 255, .68);
+  border-color: rgba(123, 150, 137, .25);
+  box-shadow: 0 5px 16px rgba(54, 68, 61, .04);
+}
+.timeline-section .timeline-filter-btn:hover,
+:is(.dark .timeline-section .timeline-filter-btn:hover) {
+  color: #a45e22;
+  border-color: rgba(219, 145, 55, .62);
+  background: #fffaf0;
+}
+.timeline-section .timeline-filter-btn.active,
+:is(.dark .timeline-section .timeline-filter-btn.active) {
+  color: #292722;
+  border-color: #efad4d;
+  background: linear-gradient(110deg, #f7c86a, #f4b358);
+  box-shadow: 0 7px 18px rgba(204, 142, 47, .2);
+}
+.timeline-section .timeline-filter-btn.active .timeline-filter-count,
+:is(.dark .timeline-section .timeline-filter-btn.active .timeline-filter-count) {
+  color: #463319;
+  background: rgba(255, 255, 255, .55);
+}
+.timeline-section .timeline-filter-count,
+:is(.dark .timeline-section .timeline-filter-count) {
+  color: #626c68;
+  background: rgba(93, 117, 105, .12);
+}
+.timeline-section .timeline-filter-btn:focus-visible { outline: 2px solid #dc903d; outline-offset: 3px; }

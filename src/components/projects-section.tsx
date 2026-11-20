@@ -236,7 +236,13 @@ export function ProjectsSection() {
      <section className="project-grid">
       <div className="project-grid__container">
         <div className="project-grid__header">
-          <h2 className="project-grid__title">Featured Projects</h2>
+          <div className="project-grid__watermark" aria-hidden="true">PROJECTS</div>
+          <div className="project-grid__title-wrap">
+            <h2 className="project-grid__title">
+              Featured <span className="project-grid__title-highlight">Projects</span>
+            </h2>
+            <span className="project-grid__title-bar" />
+          </div>
           <p className="project-grid__subtitle">
             Explore my latest work and creative solutions
           </p>

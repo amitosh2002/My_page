@@ -124,6 +124,7 @@ export function Hero(): JSX.Element {
       <div className="hero__why">
         <div className="hero__quality-heading">
           <div>
+            <span className="hero__quality-watermark" aria-hidden="true">QUALITY</span>
             <span className="hero__quality-kicker">My expertise</span>
             <h2 className="hero__why-title">My Quality Services</h2>
           </div>

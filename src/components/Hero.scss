@@ -766,3 +766,24 @@ $light-bg:    #f9fafb;
 .hero__portrait-socials a { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid rgba(49, 40, 25, .25); border-radius: 50%; background: rgba(255, 244, 218, .56); color: #28231b; transition: color .2s ease, background .2s ease, transform .2s ease; }
 .hero__portrait-socials a:hover { color: #fff; background: #252a30; text-decoration: none; transform: translateY(-2px); }
 @media (max-width: 680px) { .hero__portrait-socials { right: 6%; bottom: 20%; gap: 8px; } }
+
+.hero__quality-heading > div:first-child { position: relative; }
+.hero__quality-watermark {
+  position: absolute;
+  z-index: 0;
+  left: -5px;
+  top: 46%;
+  transform: translateY(-55%);
+  color: rgba(31, 41, 55, .045);
+  font-size: clamp(3.5rem, 9vw, 7.4rem);
+  font-weight: 900;
+  letter-spacing: .08em;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+.hero__quality-kicker, .hero__why-title { position: relative; z-index: 1; }
+@media (max-width: 680px) {
+  .hero__quality-watermark { font-size: clamp(3.1rem, 14vw, 5rem); top: 52%; }
+}
