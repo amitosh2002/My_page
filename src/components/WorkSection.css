@@ -15,7 +15,7 @@
 }
 
 .timeline-container {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -190,7 +190,7 @@
 }
 
 /* ==========================================================================
-   Timeline List & Grid (Date - Line/Box Logo - Card)
+   Timeline List & Grid (Line/Logo Box - Card)
    ========================================================================== */
 
 .timeline-list {
@@ -201,33 +201,14 @@
 
 .timeline-row {
   display: grid;
-  grid-template-columns: 140px 64px 1fr;
+  grid-template-columns: 88px 1fr;
   align-items: flex-start;
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .timeline-row:last-child {
   margin-bottom: 0;
-}
-
-/* Left Date Column */
-.timeline-date-col {
-  padding-top: 22px;
-  padding-right: 20px;
-  text-align: right;
-}
-
-.timeline-date-text {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #64748b;
-  letter-spacing: -0.2px;
-  white-space: nowrap;
-}
-
-:is(.dark .timeline-date-text) {
-  color: #94a3b8;
 }
 
 /* Center Spine Column */
@@ -236,12 +217,13 @@
   display: flex;
   justify-content: center;
   align-self: stretch;
+  width: 88px;
 }
 
 .timeline-spine-line {
   position: absolute;
-  top: 20px;
-  bottom: -28px;
+  top: 24px;
+  bottom: -32px;
   width: 2px;
   background-color: #bfdbfe;
   left: 50%;
@@ -257,33 +239,33 @@
   display: none;
 }
 
-/* Logo Box Badge on the spine (replacing the circle) */
+/* Enlarged Logo Box Badge on the spine */
 .timeline-logo-box {
-  width: 48px;
-  height: 32px;
-  border-radius: 7px;
+  width: 76px;
+  height: 48px;
+  border-radius: 10px;
   background-color: #ffffff;
   border: 1.5px solid #cbd5e1;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
-  margin-top: 16px;
-  padding: 3px 6px;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+  margin-top: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.02);
   transition: all 0.25s ease;
 }
 
 :is(.dark .timeline-logo-box) {
   background-color: #1e293b;
   border-color: #475569;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .timeline-row:hover .timeline-logo-box {
   border-color: #2563eb;
-  box-shadow: 0 0 0 4px #eff6ff, 0 4px 10px rgba(37, 99, 235, 0.15);
-  transform: scale(1.08);
+  box-shadow: 0 0 0 4px #eff6ff, 0 6px 14px rgba(37, 99, 235, 0.16);
+  transform: scale(1.05);
 }
 
 :is(.dark .timeline-row:hover .timeline-logo-box) {
@@ -304,16 +286,16 @@
    ========================================================================== */
 
 .timeline-card-col {
-  padding-left: 10px;
+  padding-left: 12px;
 }
 
 .timeline-card {
   position: relative;
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 24px 28px;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
   transition: all 0.3s ease;
 }
 
@@ -334,11 +316,11 @@
   box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.5);
 }
 
-/* Triangular pointer notch pointing left toward the logo box */
+/* Triangular pointer notch pointing left toward the enlarged logo box */
 .timeline-card::before {
   content: '';
   position: absolute;
-  top: 22px;
+  top: 26px;
   left: -8px;
   width: 0;
   height: 0;
@@ -351,7 +333,7 @@
 .timeline-card::after {
   content: '';
   position: absolute;
-  top: 22px;
+  top: 26px;
   left: -10px;
   width: 0;
   height: 0;
@@ -375,11 +357,11 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .timeline-card-title {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #0f172a;
   letter-spacing: -0.3px;
@@ -403,7 +385,7 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: 2.5px 8px;
+  padding: 3px 9px;
   border-radius: 9999px;
   white-space: nowrap;
 }
@@ -431,19 +413,49 @@
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-/* Company / Organization Subtitle (Clean Text without logo badge) */
-.timeline-card-company {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #2563eb;
-  margin-bottom: 8px;
+/* Meta Line Below Role Name: Company • Duration */
+.timeline-card-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
 }
 
-:is(.dark .timeline-card-company) {
+.timeline-card-company-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+:is(.dark .timeline-card-company-name) {
   color: #60a5fa;
+}
+
+.timeline-meta-dot {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+:is(.dark .timeline-meta-dot) {
+  color: #475569;
+}
+
+.timeline-card-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+:is(.dark .timeline-card-duration) {
+  color: #94a3b8;
 }
 
 /* Sub-context badge (for Utpatti concurrent note) */
@@ -456,28 +468,15 @@
   color: #2563eb;
   background-color: #eff6ff;
   border: 1px solid #dbeafe;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 :is(.dark .timeline-concurrent-note) {
   color: #93c5fd;
   background-color: rgba(37, 99, 235, 0.15);
   border-color: rgba(96, 165, 250, 0.25);
-}
-
-/* Mobile-only date indicator */
-.timeline-mobile-date {
-  display: none;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 6px;
-}
-
-:is(.dark .timeline-mobile-date) {
-  color: #94a3b8;
 }
 
 /* Description paragraph */
@@ -543,21 +542,13 @@
   }
 
   .timeline-row {
-    grid-template-columns: 46px 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .timeline-date-col {
-    display: none;
-  }
-
-  .timeline-mobile-date {
-    display: block;
+    grid-template-columns: 66px 1fr;
+    gap: 8px;
+    margin-bottom: 22px;
   }
 
   .timeline-spine-col {
-    align-self: stretch;
+    width: 66px;
   }
 
   .timeline-spine-line {
@@ -565,10 +556,10 @@
   }
 
   .timeline-logo-box {
-    width: 42px;
-    height: 28px;
-    margin-top: 18px;
-    padding: 2px 4px;
+    width: 58px;
+    height: 38px;
+    margin-top: 14px;
+    padding: 4px 6px;
   }
 
   .timeline-card-col {
@@ -581,6 +572,6 @@
 
   .timeline-card::before,
   .timeline-card::after {
-    top: 20px;
+    top: 22px;
   }
 }

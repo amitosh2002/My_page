@@ -86,7 +86,7 @@ export function getWorkExperiences(): WorkExperience[] {
         description: 'Leading frontend and full-stack architecture for shipping intelligence, logistics tracking automation, and high-performance analytics dashboards.',
         startDate: '2026-08-01',
         current: true,
-        technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+        technologies: ['React', 'Python', 'TypeScript', 'Tailwind CSS'],
         createdAt: new Date().toISOString(),
       },
       {

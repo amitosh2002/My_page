@@ -7,6 +7,7 @@ import {
   Users,
   Building2,
   GraduationCap,
+  Calendar,
 } from 'lucide-react';
 
 import shipiqLogo from '@/theme/shipiq.png';
@@ -147,12 +148,7 @@ export function WorkSection() {
             <div className="timeline-list">
               {companyExperiences.map((item) => (
                 <div key={item.id} className="timeline-row">
-                  {/* Left Date Column */}
-                  <div className="timeline-date-col">
-                    <span className="timeline-date-text">{item.date}</span>
-                  </div>
-
-                  {/* Center Spine Column with Logo Box (replacing circle) */}
+                  {/* Center Spine Column with Enlarged Logo Box */}
                   <div className="timeline-spine-col">
                     <div className="timeline-spine-line" />
                     <div
@@ -162,18 +158,16 @@ export function WorkSection() {
                       <Image
                         src={item.logo}
                         alt={item.company}
-                        width={38}
-                        height={22}
+                        width={58}
+                        height={32}
                         className="timeline-box-img"
                       />
                     </div>
                   </div>
 
-                  {/* Right Column: Clean White Card (no logo inside) */}
+                  {/* Right Column: Clean White Card with Meta below Role Name */}
                   <div className="timeline-card-col">
                     <div className="timeline-card">
-                      <div className="timeline-mobile-date">{item.date}</div>
-
                       <div className="timeline-card-header">
                         <h3 className="timeline-card-title">{item.title}</h3>
                         {item.isCurrent && (
@@ -184,9 +178,17 @@ export function WorkSection() {
                         )}
                       </div>
 
-                      <div className="timeline-card-company">
-                        <Building2 className="w-4 h-4" />
-                        <span>{item.company}</span>
+                      {/* Duration & Company Line Below Role Name */}
+                      <div className="timeline-card-meta">
+                        <span className="timeline-card-company-name">
+                          <Building2 className="w-4 h-4" />
+                          {item.company}
+                        </span>
+                        <span className="timeline-meta-dot">•</span>
+                        <span className="timeline-card-duration">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {item.date}
+                        </span>
                       </div>
 
                       <p className="timeline-card-desc">{item.description}</p>
@@ -237,37 +239,38 @@ export function WorkSection() {
             <div className="timeline-list">
               {mentorshipExperiences.map((item) => (
                 <div key={item.id} className="timeline-row">
-                  {/* Left Date Column */}
-                  <div className="timeline-date-col">
-                    <span className="timeline-date-text">{item.date}</span>
-                  </div>
-
-                  {/* Center Spine Column with Logo Box (replacing circle) */}
+                  {/* Center Spine Column with Enlarged Logo Box */}
                   <div className="timeline-spine-col">
                     <div className="timeline-spine-line" />
                     <div className="timeline-logo-box">
                       <Image
                         src={item.logo}
                         alt={item.company}
-                        width={38}
-                        height={22}
+                        width={58}
+                        height={32}
                         className="timeline-box-img"
                       />
                     </div>
                   </div>
 
-                  {/* Right Column: Clean White Card (no logo inside) */}
+                  {/* Right Column: Clean White Card with Meta below Role Name */}
                   <div className="timeline-card-col">
                     <div className="timeline-card">
-                      <div className="timeline-mobile-date">{item.date}</div>
-
                       <div className="timeline-card-header">
                         <h3 className="timeline-card-title">{item.title}</h3>
                       </div>
 
-                      <div className="timeline-card-company">
-                        <GraduationCap className="w-4 h-4" />
-                        <span>{item.company}</span>
+                      {/* Duration & Organization Line Below Role Name */}
+                      <div className="timeline-card-meta">
+                        <span className="timeline-card-company-name">
+                          <GraduationCap className="w-4 h-4" />
+                          {item.company}
+                        </span>
+                        <span className="timeline-meta-dot">•</span>
+                        <span className="timeline-card-duration">
+                          <Calendar className="w-3.5 h-3.5" />
+                          {item.date}
+                        </span>
                       </div>
 
                       {item.concurrentNote && (
