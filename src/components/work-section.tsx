@@ -5,8 +5,6 @@ import Image, { StaticImageData } from 'next/image';
 import {
   Briefcase,
   Users,
-  Building2,
-  GraduationCap,
   Calendar,
 } from 'lucide-react';
 
@@ -181,12 +179,11 @@ export function WorkSection() {
                       {/* Duration & Company Line Below Role Name */}
                       <div className="timeline-card-meta">
                         <span className="timeline-card-company-name">
-                          <Building2 className="w-4 h-4" />
                           {item.company}
                         </span>
                         <span className="timeline-meta-dot">•</span>
                         <span className="timeline-card-duration">
-                          <Calendar className="w-3.5 h-3.5" />
+                          <Calendar className="w-3 h-3" />
                           {item.date}
                         </span>
                       </div>
@@ -263,12 +260,11 @@ export function WorkSection() {
                       {/* Duration & Organization Line Below Role Name */}
                       <div className="timeline-card-meta">
                         <span className="timeline-card-company-name">
-                          <GraduationCap className="w-4 h-4" />
                           {item.company}
                         </span>
                         <span className="timeline-meta-dot">•</span>
                         <span className="timeline-card-duration">
-                          <Calendar className="w-3.5 h-3.5" />
+                          <Calendar className="w-3 h-3" />
                           {item.date}
                         </span>
                       </div>
