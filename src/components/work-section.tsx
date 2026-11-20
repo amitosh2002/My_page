@@ -1,296 +1,195 @@
 'use client';
 
-import { WorkExperience } from '@/types';
 import {
   Rocket,
   CreditCard,
-  GraduationCap,
   Code2,
-  Building2,
+  GraduationCap,
+  Flag,
+  Clock,
+  Sparkles,
   GitBranch,
-  GitFork,
-  CheckCircle2,
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { getWorkExperiences, saveWorkExperiences } from '@/lib/data-storage';
 import './WorkSection.css';
 
-// Career timeline with ShipIQ, Travels & Payments, Mittarv, and Utpatti Sub-Branch
-const defaultExperiences: WorkExperience[] = [
-  {
-    id: '1',
-    company: 'ShipIQ',
-    position: 'Software Engineer',
-    description:
-      'Leading frontend and full-stack architecture for shipping intelligence, logistics tracking automation, and high-performance analytics dashboards.',
-    startDate: '2026-08-01',
-    current: true,
-    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: '2',
-    company: 'Travels and Payments',
-    position: 'Software Developer',
-    description:
-      'Engineered secure payment processing workflows, booking system modules, and responsive checkout experiences with high reliability and throughput.',
-    startDate: '2026-05-01',
-    endDate: '2026-07-31',
-    current: false,
-    concurrentWith: 'Utpatti Fellowship Program',
-    technologies: ['React', 'TypeScript', 'Payment Gateways', 'Tailwind CSS', 'REST API'],
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: '3',
+export function WorkSection() {
+  const mainStations = [
+    {
+      id: 'mittarv',
+      date: 'Feb – Apr 2025',
+      company: 'Mittarv',
+      position: 'Software Developer',
+      description:
+        'Developed responsive customer-facing product features, modular frontend state management, and reusable UI components across the platform.',
+      technologies: ['React', 'JavaScript', 'Node.js', 'Redux', 'SCSS'],
+      icon: Code2,
+      isCompleted: true,
+      isActive: false,
+    },
+    {
+      id: 'travels',
+      date: 'May – Jul 2026',
+      company: 'Travels and Payments',
+      position: 'Software Developer',
+      description:
+        'Engineered secure payment processing workflows, booking system modules, and responsive checkout experiences with high reliability and throughput.',
+      technologies: ['React', 'TypeScript', 'Payment Gateways', 'Tailwind CSS', 'REST API'],
+      icon: CreditCard,
+      isCompleted: true,
+      isActive: false,
+    },
+    {
+      id: 'shipiq',
+      date: 'Aug 2026 – Present',
+      company: 'ShipIQ',
+      position: 'Software Engineer',
+      description:
+        'Leading frontend and full-stack architecture for shipping intelligence, logistics tracking automation, and high-performance analytics dashboards.',
+      technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+      icon: Rocket,
+      isCompleted: true,
+      isActive: true,
+    },
+  ];
+
+  const parallelMilestone = {
+    date: 'Mar – Oct',
     company: 'Utpatti Fellowship Program',
     position: 'Technical Mentor',
     description:
       'Served as Technical Mentor guiding fellows in modern web engineering, architecture design, and production code reviews, operating concurrently alongside roles at Mittarv and Travels & Payments.',
-    startDate: '2025-03-01',
-    endDate: '2025-10-31',
-    current: false,
-    isSubBranch: true,
-    subBranchLabel: 'Sub-branch from Mittarv & Travels and Payments',
-    concurrentWith: 'Mittarv & Travels and Payments',
     technologies: ['Mentorship', 'Code Reviews', 'System Design', 'React', 'Node.js', 'Git'],
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: '4',
-    company: 'Mittarv',
-    position: 'Software Developer',
-    description:
-      'Developed responsive user-facing product features, modular frontend state management, and reusable UI components across the platform.',
-    startDate: '2025-02-01',
-    endDate: '2025-04-30',
-    current: false,
-    concurrentWith: 'Utpatti Fellowship Program',
-    technologies: ['React', 'JavaScript', 'Node.js', 'Redux', 'SCSS'],
-    createdAt: new Date().toISOString(),
-  },
-];
-
-export function WorkSection() {
-  const [experiences, setExperiences] = useState<WorkExperience[]>(defaultExperiences);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const stored = getWorkExperiences();
-    // If stored contains the updated experiences, use them; otherwise initialize with defaultExperiences
-    if (stored && stored.length > 0 && stored.some((e) => e.company.toLowerCase().includes('shipiq'))) {
-      setExperiences(stored);
-    } else {
-      saveWorkExperiences(defaultExperiences);
-      setExperiences(defaultExperiences);
-    }
-  }, []);
-
-  // Format custom date ranges matching user requirements
-  const formatTimelineDate = (experience: WorkExperience) => {
-    const company = experience.company.toLowerCase();
-    if (company.includes('shipiq')) {
-      return 'Aug 2026 - Present';
-    }
-    if (company.includes('travel')) {
-      return 'May - Jul 2026';
-    }
-    if (company.includes('utpatti')) {
-      return 'Mar - Oct';
-    }
-    if (company.includes('mittarv')) {
-      return 'Feb - Apr 2025';
-    }
-    const startYear = new Date(experience.startDate).getFullYear();
-    if (experience.current) return `${startYear} - Present`;
-    if (!experience.endDate) return `${startYear}`;
-    const endYear = new Date(experience.endDate).getFullYear();
-    return isNaN(endYear) || startYear === endYear ? `${startYear}` : `${startYear}-${endYear}`;
-  };
-
-  // Icon mapping
-  const getTimelineIcon = (experience: WorkExperience) => {
-    const company = experience.company.toLowerCase();
-    if (experience.isSubBranch || company.includes('utpatti')) {
-      return <GraduationCap className="timeline-badge-icon" />;
-    }
-    if (company.includes('shipiq')) {
-      return <Rocket className="timeline-badge-icon" />;
-    }
-    if (company.includes('travel')) {
-      return <CreditCard className="timeline-badge-icon" />;
-    }
-    if (company.includes('mittarv')) {
-      return <Code2 className="timeline-badge-icon" />;
-    }
-    return <Building2 className="timeline-badge-icon" />;
   };
 
   return (
-    <section id="work" className="timeline-section">
-      <div className="timeline-container">
-        {/* Header with Background Watermark and Blue Underline Bar */}
-        <div className="timeline-header">
-          <div className="timeline-watermark" aria-hidden="true">
-            TIMELINE
-          </div>
-          <div className="timeline-title-wrapper">
-            <h2 className="timeline-title">
-              Company
-              <span className="timeline-title-highlight">
-                Timeline
-                <span className="timeline-title-bar" />
-              </span>
-            </h2>
-          </div>
-          <p className="timeline-subtitle">
-            A chronological timeline of professional experience, active roles, and concurrent technical mentorship.
+    <section id="work" className="roadmap-section">
+      <div className="roadmap-container">
+        {/* Header */}
+        <div className="roadmap-header">
+          <h2 className="roadmap-title">
+            Career
+            <span className="roadmap-title-highlight">
+              Timeline
+              <span className="roadmap-title-bar" />
+            </span>
+          </h2>
+          <p className="roadmap-subtitle">
+            A chronological timeline of core engineering roles with concurrent technical mentorship.
           </p>
         </div>
 
-        {/* Timeline list */}
-        {experiences.length === 0 ? (
-          <div className="timeline-empty">
-            <Building2 className="timeline-empty-icon" />
-            <p>No timeline experiences added yet.</p>
+        {/* White Card Container (Accord Reference) */}
+        <div className="roadmap-card">
+          {/* Card Top Title Bar */}
+          <div className="roadmap-card-header">
+            <h3 className="roadmap-card-title">Timeline for Amitosh</h3>
+            <div className="roadmap-card-badge">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Full Stack & Mentorship</span>
+            </div>
           </div>
-        ) : (
-          <div className="timeline-list">
-            {experiences.map((experience, index) => {
-              const dateRange = formatTimelineDate(experience);
-              const isSubBranch = experience.isSubBranch;
 
-              return (
-                <div
-                  key={experience.id || index}
-                  className={`timeline-item ${isSubBranch ? 'timeline-item-subbranch' : ''}`}
-                >
-                  {/* Left Column: Date Range */}
-                  <div className="timeline-date-col">
-                    <div className="timeline-date-text">{dateRange}</div>
-                    {isSubBranch && (
-                      <span className="timeline-date-subbranch-pill">
-                        <GitBranch className="w-3 h-3" /> Sub-Branch
-                      </span>
-                    )}
-                  </div>
+          {/* Scrollable Track Wrapper */}
+          <div className="roadmap-scroll-wrapper">
+            <div className="roadmap-track-container">
+              {/* Continuous Horizontal Rail Bar */}
+              <div className="roadmap-rail-bg" />
+              <div className="roadmap-rail-fill" />
 
-                  {/* Center Column: Spine Line and Circular Badge */}
-                  <div className="timeline-spine-col">
-                    <div className="timeline-line" />
-                    
-                    {/* Visual branch curve connecting sub-branch to the main spine */}
-                    {isSubBranch && (
-                      <svg
-                        className="timeline-branch-curve-svg"
-                        viewBox="0 0 32 28"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M 2 2 C 2 14, 18 16, 20 24"
-                          stroke="#a855f7"
-                          strokeWidth="2.5"
-                          strokeDasharray="3 3"
-                        />
-                      </svg>
-                    )}
-
-                    <div
-                      className={`timeline-badge ${
-                        isSubBranch ? 'timeline-badge-subbranch' : ''
-                      }`}
-                    >
-                      {getTimelineIcon(experience)}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Card with Pointer Notch */}
-                  <div className="timeline-card-col">
-                    <div
-                      className={`timeline-card ${
-                        isSubBranch ? 'timeline-card-subbranch' : ''
-                      }`}
-                    >
-                      {/* Mobile Date indicator (visible on small screens) */}
-                      <div className="timeline-mobile-date">
-                        {dateRange}
-                        {isSubBranch && ' • Sub-Branch (Mentorship)'}
-                      </div>
-
-                      {/* Sub-branch banner header */}
-                      {isSubBranch && (
-                        <div className="timeline-branch-banner">
-                          <span className="timeline-branch-pill">
-                            <GitBranch className="w-3.5 h-3.5" /> Sub-Branch
-                          </span>
-                          <span className="timeline-branch-note">
-                            Concurrent with Mittarv (Feb–Apr) & Travels and Payments (May–Jul)
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Header with Title and Current Badge */}
-                      <div className="timeline-card-header">
-                        <h3 className="timeline-card-title">{experience.position}</h3>
-                        {experience.current && (
-                          <span className="timeline-current-badge">
-                            <span className="timeline-current-dot" />
-                            Current
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Company Name */}
+              {/* The 3 Main Milestone Stations */}
+              <div className="roadmap-stations-grid">
+                {mainStations.map((station) => {
+                  const Icon = station.icon;
+                  return (
+                    <div key={station.id} className="roadmap-station">
+                      {/* Date on Top */}
                       <div
-                        className={`timeline-card-company ${
-                          isSubBranch ? 'timeline-card-company-purple' : ''
+                        className={`roadmap-station-date ${
+                          station.isActive ? 'roadmap-station-date-active' : ''
                         }`}
                       >
-                        {isSubBranch ? (
-                          <GraduationCap className="w-4 h-4" />
-                        ) : (
-                          <Building2 className="w-4 h-4" />
-                        )}
-                        <span>{experience.company}</span>
+                        {station.date}
                       </div>
 
-                      {/* Overlap / Concurrent Tag on linked roles */}
-                      {!isSubBranch && experience.concurrentWith && (
-                        <div>
-                          <span className="timeline-overlap-tag">
-                            <GitFork className="w-3.5 h-3.5" /> Concurrent: Technical Mentor @ Utpatti Fellowship
-                          </span>
-                        </div>
-                      )}
+                      {/* Milestone Circle Badge */}
+                      <div
+                        className={`roadmap-station-badge ${
+                          station.isActive ? 'roadmap-station-badge-pulse' : ''
+                        }`}
+                      >
+                        {station.isActive && <span className="roadmap-pulse-ring" />}
+                        <Icon className="w-5 h-5" />
+                      </div>
 
-                      {/* Description */}
-                      <p className="timeline-card-desc">{experience.description}</p>
-
-                      {/* Technology Chips */}
-                      {experience.technologies && experience.technologies.length > 0 && (
-                        <div className="timeline-tech-list">
-                          {experience.technologies.map((tech, i) => (
-                            <span
-                              key={i}
-                              className={`timeline-tech-tag ${
-                                isSubBranch ? 'timeline-tech-tag-purple' : ''
-                              }`}
-                            >
-                              {tech}
+                      {/* Content Card below */}
+                      <div className="roadmap-station-content">
+                        <h4 className="roadmap-station-title">{station.position}</h4>
+                        <div className="roadmap-station-company">{station.company}</div>
+                        <p className="roadmap-station-desc">{station.description}</p>
+                        <div className="roadmap-station-tags">
+                          {station.technologies.slice(0, 3).map((tag, i) => (
+                            <span key={i} className="roadmap-station-tag">
+                              {tag}
                             </span>
                           ))}
                         </div>
-                      )}
+                      </div>
                     </div>
+                  );
+                })}
+              </div>
+
+              {/* Parallel Timeline Sub-Branch (Under Mittarv & Travels and Payments) */}
+              <div className="roadmap-parallel-container">
+                {/* Dotted drop connector stem from rail to parallel card */}
+                <div className="roadmap-parallel-stem" />
+
+                {/* Parallel Card */}
+                <div className="roadmap-parallel-card">
+                  {/* Flag row marker matching reference image */}
+                  <div className="roadmap-parallel-flag-row">
+                    <span className="roadmap-parallel-flag-badge">
+                      <Flag className="w-3 h-3" />
+                      {parallelMilestone.date}
+                    </span>
+                    <span className="roadmap-parallel-concurrent-note">
+                      <GitBranch className="w-3.5 h-3.5 inline mr-1" />
+                      Parallel Mentorship • Concurrent with Mittarv & Travels and Payments
+                    </span>
+                  </div>
+
+                  <h4 className="roadmap-parallel-title">{parallelMilestone.position}</h4>
+                  <div className="roadmap-parallel-company">
+                    <GraduationCap className="w-4 h-4 inline mr-1.5" />
+                    {parallelMilestone.company}
+                  </div>
+                  <p className="roadmap-parallel-desc">{parallelMilestone.description}</p>
+
+                  <div className="roadmap-parallel-tags">
+                    {parallelMilestone.technologies.map((tag, i) => (
+                      <span key={i} className="roadmap-parallel-tag">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
-        )}
+
+          <div className="roadmap-mobile-scroll-hint">
+            ← Scroll horizontally to explore timeline →
+          </div>
+
+          {/* Bottom Active Status Pill (Left: 5 Months style) */}
+          <div className="roadmap-bottom-summary">
+            <div className="roadmap-status-pill">
+              <span className="roadmap-status-dot" />
+              <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>Current Status: Software Engineer @ ShipIQ (Aug 2026 – Present)</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

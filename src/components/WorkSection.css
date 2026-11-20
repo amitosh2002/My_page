@@ -1,64 +1,33 @@
 /* ==========================================================================
-   Experience / Company Timeline - Matching Design Reference & Sub-Branch
+   Horizontal Career Roadmap with Parallel Timeline - Accord Reference Design
    ========================================================================== */
 
-.timeline-section {
-  padding: 100px 20px 120px;
+.roadmap-section {
+  padding: 80px 20px 100px;
   background-color: #fafbfc;
   position: relative;
   overflow: hidden;
   transition: background-color 0.3s ease;
 }
 
-:is(.dark .timeline-section) {
+:is(.dark .roadmap-section) {
   background-color: #0b0f19;
 }
 
-.timeline-container {
-  max-width: 980px;
+.roadmap-container {
+  max-width: 1100px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-/* ==========================================================================
-   Header with Watermark & Stylized Underline
-   ========================================================================== */
-
-.timeline-header {
+/* Section Header */
+.roadmap-header {
   text-align: center;
-  position: relative;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
-/* Faint background watermark text */
-.timeline-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -65%);
-  font-size: clamp(4rem, 10vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.04);
-  user-select: none;
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 0;
-}
-
-:is(.dark .timeline-watermark) {
-  color: rgba(255, 255, 255, 0.03);
-}
-
-.timeline-title-wrapper {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-}
-
-.timeline-title {
+.roadmap-title {
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 800;
   color: #0f172a;
@@ -67,417 +36,543 @@
   line-height: 1.2;
 }
 
-:is(.dark .timeline-title) {
+:is(.dark .roadmap-title) {
   color: #f8fafc;
 }
 
-/* Highlighted second word with blue underline bar */
-.timeline-title-highlight {
-  color: #2563eb;
+.roadmap-title-highlight {
+  color: #059669;
   position: relative;
   display: inline-block;
   margin-left: 8px;
 }
 
-:is(.dark .timeline-title-highlight) {
-  color: #3b82f6;
+:is(.dark .roadmap-title-highlight) {
+  color: #10b981;
 }
 
-.timeline-title-bar {
+.roadmap-title-bar {
   display: block;
   width: 60px;
   height: 4px;
-  background-color: #2563eb;
+  background-color: #059669;
   border-radius: 9999px;
   margin: 8px auto 0;
 }
 
-:is(.dark .timeline-title-bar) {
-  background-color: #3b82f6;
+:is(.dark .roadmap-title-bar) {
+  background-color: #10b981;
 }
 
-.timeline-subtitle {
+.roadmap-subtitle {
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
   color: #64748b;
-  max-width: 620px;
-  margin: 18px auto 0;
+  max-width: 640px;
+  margin: 16px auto 0;
   line-height: 1.6;
-  position: relative;
-  z-index: 1;
 }
 
-:is(.dark .timeline-subtitle) {
+:is(.dark .roadmap-subtitle) {
   color: #94a3b8;
 }
 
 /* ==========================================================================
-   Timeline List & Items
+   Main White Card Container (Accord Reference)
    ========================================================================== */
 
-.timeline-list {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 140px 60px 1fr;
-  align-items: flex-start;
-  position: relative;
-  margin-bottom: 28px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-/* Sub-branch specific row styling */
-.timeline-item-subbranch {
-  margin-top: -6px;
-  margin-bottom: 24px;
-}
-
-/* Left Date Column */
-.timeline-date-col {
-  padding-top: 14px;
-  padding-right: 18px;
-  text-align: right;
-}
-
-.timeline-date-text {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #64748b;
-  letter-spacing: -0.2px;
-  white-space: nowrap;
-}
-
-:is(.dark .timeline-date-text) {
-  color: #94a3b8;
-}
-
-/* Sub-branch date tag */
-.timeline-date-subbranch-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #7c3aed;
-  background-color: #f5f3ff;
-  border: 1px solid #ddd6fe;
-  padding: 1px 6px;
-  border-radius: 4px;
-  margin-top: 4px;
-}
-
-:is(.dark .timeline-date-subbranch-pill) {
-  background-color: rgba(124, 58, 237, 0.15);
-  color: #c4b5fd;
-  border-color: rgba(196, 181, 253, 0.25);
-}
-
-/* Center Spine Column */
-.timeline-spine-col {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-self: stretch;
-}
-
-/* Continuous vertical timeline connector line */
-.timeline-line {
-  position: absolute;
-  top: 18px;
-  bottom: -32px;
-  width: 2px;
-  background-color: #93c5fd;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
-:is(.dark .timeline-line) {
-  background-color: #1e3a8a;
-}
-
-.timeline-item:last-child .timeline-line {
-  display: none;
-}
-
-/* Branch curve connector for sub-branch items */
-.timeline-branch-curve-svg {
-  position: absolute;
-  top: -8px;
-  left: calc(50% - 1px);
-  width: 32px;
-  height: 28px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Circle Badge on the spine */
-.timeline-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  border: 2px solid #60a5fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2563eb;
-  z-index: 2;
-  margin-top: 6px;
-  box-shadow: 0 0 0 4px #eff6ff, 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-:is(.dark .timeline-badge) {
-  background-color: #1e293b;
-  border-color: #3b82f6;
-  color: #60a5fa;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.timeline-item:hover .timeline-badge {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 6px #dbeafe, 0 4px 8px rgba(37, 99, 235, 0.15);
-  transform: scale(1.06);
-}
-
-:is(.dark .timeline-item:hover .timeline-badge) {
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.25);
-}
-
-/* Sub-branch distinct purple badge */
-.timeline-badge-subbranch {
-  border-color: #a855f7;
-  color: #9333ea;
-  box-shadow: 0 0 0 4px #faf5ff, 0 2px 4px rgba(168, 85, 247, 0.15);
-}
-
-:is(.dark .timeline-badge-subbranch) {
-  background-color: #1e1b4b;
-  border-color: #a855f7;
-  color: #c084fc;
-  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2), 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.timeline-item-subbranch:hover .timeline-badge-subbranch {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 6px #ede9fe, 0 4px 10px rgba(124, 58, 237, 0.2);
-}
-
-:is(.dark .timeline-item-subbranch:hover .timeline-badge-subbranch) {
-  border-color: #c084fc;
-  box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.3);
-}
-
-.timeline-badge-icon {
-  width: 17px;
-  height: 17px;
-  stroke-width: 2.2;
-}
-
-/* ==========================================================================
-   Right Card Column
-   ========================================================================== */
-
-.timeline-card-col {
-  padding-left: 12px;
-}
-
-.timeline-card {
-  position: relative;
+.roadmap-card {
   background-color: #ffffff;
   border: 1px solid #eef2f6;
-  border-radius: 12px;
-  padding: 24px 28px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
+  padding: 40px 36px 44px;
+  box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 2px 10px -2px rgba(15, 23, 42, 0.02);
+  position: relative;
+  overflow: hidden;
 }
 
-:is(.dark .timeline-card) {
-  background-color: #1e293b;
-  border-color: #334155;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+:is(.dark .roadmap-card) {
+  background-color: #111827;
+  border-color: #1f2937;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-.timeline-card:hover {
-  transform: translateY(-2px);
-  border-color: #cbd5e1;
-  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
-}
-
-:is(.dark .timeline-card:hover) {
-  border-color: #475569;
-  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
-}
-
-/* Triangular notch / pointer pointing to the circle */
-.timeline-card::before {
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: -8px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid #ffffff;
-  z-index: 2;
-}
-
-.timeline-card::after {
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: -10px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 9px solid #e2e8f0;
-  z-index: 1;
-}
-
-:is(.dark .timeline-card::before) {
-  border-right-color: #1e293b;
-}
-
-:is(.dark .timeline-card::after) {
-  border-right-color: #334155;
-}
-
-/* Sub-branch card custom styling */
-.timeline-card-subbranch {
-  border-left: 4px solid #a855f7;
-  border-color: #f3e8ff #eef2f6 #eef2f6 #a855f7;
-  background: linear-gradient(to right, #fcfaff, #ffffff 18%);
-}
-
-:is(.dark .timeline-card-subbranch) {
-  border-left-color: #a855f7;
-  border-color: #4c1d95 #334155 #334155 #a855f7;
-  background: linear-gradient(to right, #1b1638, #1e293b 22%);
-}
-
-.timeline-card-subbranch:hover {
-  border-left-color: #7c3aed;
-  border-color: #e9d5ff #cbd5e1 #cbd5e1 #7c3aed;
-  box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
-}
-
-:is(.dark .timeline-card-subbranch:hover) {
-  border-left-color: #c084fc;
-  box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.25);
-}
-
-/* Sub-branch top banner */
-.timeline-branch-banner {
+.roadmap-card-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed #ede9fe;
-}
-
-:is(.dark .timeline-branch-banner) {
-  border-bottom-color: #3b2c6b;
-}
-
-.timeline-branch-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  padding: 2.5px 8px;
-  border-radius: 9999px;
-  background-color: #f5f3ff;
-  color: #7c3aed;
-  border: 1px solid #ddd6fe;
-}
-
-:is(.dark .timeline-branch-pill) {
-  background-color: rgba(124, 58, 237, 0.18);
-  color: #c4b5fd;
-  border-color: rgba(196, 181, 253, 0.3);
-}
-
-.timeline-branch-note {
-  font-size: 0.8rem;
-  color: #6d28d9;
-  font-weight: 500;
-}
-
-:is(.dark .timeline-branch-note) {
-  color: #c4b5fd;
-}
-
-/* Card Header */
-.timeline-card-header {
-  display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 6px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 24px;
+  margin-bottom: 40px;
 }
 
-.timeline-card-title {
-  font-size: 1.15rem;
+:is(.dark .roadmap-card-header) {
+  border-bottom-color: #1f2937;
+}
+
+.roadmap-card-title {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #0f172a;
-  letter-spacing: -0.3px;
   margin: 0;
-  line-height: 1.3;
 }
 
-:is(.dark .timeline-card-title) {
+:is(.dark .roadmap-card-title) {
   color: #f8fafc;
 }
 
-/* Current / Active Badge */
-.timeline-current-badge {
+.roadmap-card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background-color: #eff6ff;
-  color: #2563eb;
-  border: 1px solid #bfdbfe;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 3px 9px;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #059669;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 4px 12px;
   border-radius: 9999px;
+}
+
+:is(.dark .roadmap-card-badge) {
+  color: #34d399;
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+/* ==========================================================================
+   Horizontal Timeline Track & Rail
+   ========================================================================== */
+
+.roadmap-scroll-wrapper {
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.roadmap-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.roadmap-scroll-wrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+
+.roadmap-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+:is(.dark .roadmap-scroll-wrapper)::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+:is(.dark .roadmap-scroll-wrapper)::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+.roadmap-track-container {
+  min-width: 820px;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* The Main Continuous Horizontal Bar */
+.roadmap-rail-bg {
+  position: absolute;
+  top: 76px;
+  left: 60px;
+  right: 60px;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  z-index: 1;
+}
+
+:is(.dark .roadmap-rail-bg) {
+  background-color: #374151;
+}
+
+/* Filled active progress bar (from start through active role) */
+.roadmap-rail-fill {
+  position: absolute;
+  top: 76px;
+  left: 60px;
+  right: 60px;
+  height: 6px;
+  background: linear-gradient(to right, #059669, #10b981, #059669);
+  border-radius: 9999px;
+  z-index: 1;
+}
+
+/* The 3 Main Stations Columns */
+.roadmap-stations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.roadmap-station {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Date on Top of Milestone Node */
+.roadmap-station-date {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #059669;
+  margin-bottom: 12px;
   white-space: nowrap;
 }
 
-:is(.dark .timeline-current-badge) {
-  background-color: rgba(37, 99, 235, 0.15);
-  color: #60a5fa;
-  border-color: rgba(96, 165, 250, 0.3);
+:is(.dark .roadmap-station-date) {
+  color: #34d399;
 }
 
-.timeline-current-dot {
-  width: 6px;
-  height: 6px;
+.roadmap-station-date-active {
+  color: #059669;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Station Circular Milestone Badge */
+.roadmap-station-badge {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background-color: #2563eb;
-  animation: pulse-dot 2s infinite ease-in-out;
+  background-color: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 5px #ecfdf5, 0 4px 10px rgba(16, 185, 129, 0.25);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-:is(.dark .timeline-current-dot) {
-  background-color: #60a5fa;
+:is(.dark .roadmap-station-badge) {
+  box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.2), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.roadmap-station:hover .roadmap-station-badge {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 8px #d1fae5, 0 6px 14px rgba(16, 185, 129, 0.35);
+}
+
+:is(.dark .roadmap-station:hover .roadmap-station-badge) {
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+/* Active current badge pulse */
+.roadmap-station-badge-pulse {
+  background-color: #059669;
+}
+
+.roadmap-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: ping-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes ping-pulse {
+  75%, 100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+/* Station Content Box (below the node) */
+.roadmap-station-content {
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  padding: 18px 20px;
+  width: 100%;
+  max-width: 250px;
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+:is(.dark .roadmap-station-content) {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.roadmap-station:hover .roadmap-station-content {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.06);
+}
+
+:is(.dark .roadmap-station:hover .roadmap-station-content) {
+  border-color: #4b5563;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.4);
+}
+
+.roadmap-station-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+:is(.dark .roadmap-station-title) {
+  color: #f8fafc;
+}
+
+.roadmap-station-company {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #059669;
+  margin-bottom: 8px;
+}
+
+:is(.dark .roadmap-station-company) {
+  color: #34d399;
+}
+
+.roadmap-station-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+}
+
+:is(.dark .roadmap-station-desc) {
+  color: #9ca3af;
+}
+
+.roadmap-station-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.roadmap-station-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #334155;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+:is(.dark .roadmap-station-tag) {
+  color: #d1d5db;
+  background-color: #111827;
+  border-color: #374151;
+}
+
+/* ==========================================================================
+   Parallel Timeline (Sub-Branch) - Below the Main Track
+   ========================================================================== */
+
+.roadmap-parallel-container {
+  margin-top: 36px;
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Drop-down connector line from the main rail down to the parallel branch */
+.roadmap-parallel-stem {
+  position: absolute;
+  top: -36px;
+  left: 33.33%;
+  width: 2px;
+  height: 36px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #8b5cf6,
+    #8b5cf6 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  z-index: 1;
+}
+
+:is(.dark .roadmap-parallel-stem) {
+  background: repeating-linear-gradient(
+    to bottom,
+    #a78bfa,
+    #a78bfa 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Parallel Span Card (spans under Mittarv and Travels & Payments) */
+.roadmap-parallel-card {
+  background: linear-gradient(135deg, #fdf4ff 0%, #ffffff 40%, #fdf4ff 100%);
+  border: 1.5px dashed #d8b4fe;
+  border-radius: 16px;
+  padding: 24px 28px;
+  width: 66%;
+  margin-left: 2%;
+  position: relative;
+  box-shadow: 0 4px 20px -2px rgba(139, 92, 246, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+:is(.dark .roadmap-parallel-card) {
+  background: linear-gradient(135deg, #1e1136 0%, #111827 50%, #1e1136 100%);
+  border-color: #6b21a8;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+.roadmap-parallel-card:hover {
+  transform: translateY(-2px);
+  border-color: #a855f7;
+  box-shadow: 0 10px 25px -4px rgba(139, 92, 246, 0.16);
+}
+
+:is(.dark .roadmap-parallel-card:hover) {
+  border-color: #c084fc;
+}
+
+/* Flag marker on top of the parallel card */
+.roadmap-parallel-flag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.roadmap-parallel-flag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+}
+
+.roadmap-parallel-concurrent-note {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7c3aed;
+}
+
+:is(.dark .roadmap-parallel-concurrent-note) {
+  color: #c4b5fd;
+}
+
+.roadmap-parallel-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 2px 0;
+}
+
+:is(.dark .roadmap-parallel-title) {
+  color: #f8fafc;
+}
+
+.roadmap-parallel-company {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #7c3aed;
+  margin-bottom: 8px;
+}
+
+:is(.dark .roadmap-parallel-company) {
+  color: #a78bfa;
+}
+
+.roadmap-parallel-desc {
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.55;
+  margin: 0 0 12px 0;
+  max-width: 580px;
+}
+
+:is(.dark .roadmap-parallel-desc) {
+  color: #cbd5e1;
+}
+
+.roadmap-parallel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.roadmap-parallel-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6b21a8;
+  background-color: #faf5ff;
+  border: 1px solid #e9d5ff;
+  padding: 2.5px 8px;
+  border-radius: 4px;
+}
+
+:is(.dark .roadmap-parallel-tag) {
+  color: #e9d5ff;
+  background-color: #2e1065;
+  border-color: #581c87;
+}
+
+/* ==========================================================================
+   Bottom Active Status Pill (Left: 5 Months style)
+   ========================================================================== */
+
+.roadmap-bottom-summary {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+:is(.dark .roadmap-bottom-summary) {
+  border-top-color: #1f2937;
+}
+
+.roadmap-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #059669;
+  background-color: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+}
+
+:is(.dark .roadmap-status-pill) {
+  color: #34d399;
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.roadmap-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  animation: pulse-dot 2s infinite ease-in-out;
 }
 
 @keyframes pulse-dot {
@@ -485,215 +580,25 @@
   50% { opacity: 0.4; transform: scale(0.8); }
 }
 
-/* Company / Meta Info */
-.timeline-card-company {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #2563eb;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-:is(.dark .timeline-card-company) {
-  color: #60a5fa;
-}
-
-.timeline-card-company-purple {
-  color: #7c3aed;
-}
-
-:is(.dark .timeline-card-company-purple) {
-  color: #a78bfa;
-}
-
-/* Linked / Concurrent Overlap Badge on parent cards */
-.timeline-overlap-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #6d28d9;
-  background-color: #f5f3ff;
-  border: 1px solid #ede9fe;
-  border-radius: 6px;
-  padding: 3px 8px;
-  margin-bottom: 10px;
-}
-
-:is(.dark .timeline-overlap-tag) {
-  color: #c4b5fd;
-  background-color: rgba(124, 58, 237, 0.14);
-  border-color: rgba(196, 181, 253, 0.22);
-}
-
-/* Mobile-only date display inside card */
-.timeline-mobile-date {
+/* Scroll indicator on mobile */
+.roadmap-mobile-scroll-hint {
   display: none;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 6px;
-}
-
-:is(.dark .timeline-mobile-date) {
-  color: #94a3b8;
-}
-
-/* Description paragraph */
-.timeline-card-desc {
-  font-size: 0.92rem;
-  color: #475569;
-  line-height: 1.6;
-  margin: 0;
-}
-
-:is(.dark .timeline-card-desc) {
-  color: #cbd5e1;
-}
-
-/* Technologies Pill Tags */
-.timeline-tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px dashed #f1f5f9;
-}
-
-:is(.dark .timeline-tech-list) {
-  border-top-color: #334155;
-}
-
-.timeline-tech-tag {
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #334155;
-  background-color: #f1f5f9;
-  padding: 4px 10px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-:is(.dark .timeline-tech-tag) {
-  color: #cbd5e1;
-  background-color: #0f172a;
-}
-
-.timeline-tech-tag:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
-}
-
-:is(.dark .timeline-tech-tag:hover) {
-  background-color: #1e293b;
-  color: #f8fafc;
-}
-
-.timeline-tech-tag-purple {
-  color: #6d28d9;
-  background-color: #f5f3ff;
-}
-
-:is(.dark .timeline-tech-tag-purple) {
-  color: #c4b5fd;
-  background-color: rgba(124, 58, 237, 0.16);
-}
-
-/* Empty State */
-.timeline-empty {
-  text-align: center;
-  padding: 60px 20px;
-  background-color: #ffffff;
-  border: 1px dashed #cbd5e1;
-  border-radius: 16px;
   color: #64748b;
-  max-width: 500px;
-  margin: 0 auto;
+  text-align: center;
+  margin-top: 12px;
 }
 
-:is(.dark .timeline-empty) {
-  background-color: #1e293b;
-  border-color: #475569;
+:is(.dark .roadmap-mobile-scroll-hint) {
   color: #94a3b8;
 }
 
-.timeline-empty-icon {
-  width: 44px;
-  height: 44px;
-  color: #94a3b8;
-  margin: 0 auto 12px;
-}
-
-/* ==========================================================================
-   Responsive Breakpoints
-   ========================================================================== */
-
-@media (max-width: 768px) {
-  .timeline-section {
-    padding: 70px 16px 90px;
+@media (max-width: 860px) {
+  .roadmap-card {
+    padding: 24px 18px 28px;
   }
 
-  .timeline-header {
-    margin-bottom: 50px;
-  }
-
-  .timeline-watermark {
-    font-size: 3.5rem;
-  }
-
-  .timeline-item {
-    grid-template-columns: 38px 1fr;
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-
-  .timeline-item-subbranch {
-    margin-top: 0;
-  }
-
-  /* Hide left date column on mobile */
-  .timeline-date-col {
-    display: none;
-  }
-
-  /* Show date inside card on mobile */
-  .timeline-mobile-date {
-    display: inline-block;
-  }
-
-  .timeline-spine-col {
-    align-self: stretch;
-  }
-
-  .timeline-line {
-    left: 50%;
-  }
-
-  .timeline-badge {
-    width: 34px;
-    height: 34px;
-    margin-top: 10px;
-  }
-
-  .timeline-badge-icon {
-    width: 15px;
-    height: 15px;
-  }
-
-  .timeline-card-col {
-    padding-left: 0;
-  }
-
-  .timeline-card {
-    padding: 18px 20px;
-  }
-
-  .timeline-card::before,
-  .timeline-card::after {
-    top: 18px;
+  .roadmap-mobile-scroll-hint {
+    display: block;
   }
 }
