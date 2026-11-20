@@ -1,200 +1,523 @@
-/* SECTION WRAPPER */
-.work-section {
-    padding: 80px 20px;
-    background: #ffffff;
+/* ==========================================================================
+   Experience / Company Timeline - Matching Design Reference
+   ========================================================================== */
+
+.timeline-section {
+  padding: 100px 20px 120px;
+  background-color: #fafbfc;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+:is(.dark .timeline-section) {
+  background-color: #0b0f19;
+}
+
+.timeline-container {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Header with Watermark & Stylized Underline
+   ========================================================================== */
+
+.timeline-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 70px;
+}
+
+/* Faint background watermark text */
+.timeline-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  font-size: clamp(4rem, 10vw, 7.5rem);
+  font-weight: 900;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.04);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+:is(.dark .timeline-watermark) {
+  color: rgba(255, 255, 255, 0.03);
+}
+
+.timeline-title-wrapper {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.timeline-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+:is(.dark .timeline-title) {
+  color: #f8fafc;
+}
+
+/* Highlighted second word with blue underline bar */
+.timeline-title-highlight {
+  color: #2563eb;
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+:is(.dark .timeline-title-highlight) {
+  color: #3b82f6;
+}
+
+.timeline-title-bar {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #2563eb;
+  border-radius: 9999px;
+  margin: 8px auto 0;
+}
+
+:is(.dark .timeline-title-bar) {
+  background-color: #3b82f6;
+}
+
+.timeline-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  color: #64748b;
+  max-width: 620px;
+  margin: 18px auto 0;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+:is(.dark .timeline-subtitle) {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   Timeline List & Items
+   ========================================================================== */
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 140px 60px 1fr;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Left Date Column */
+.timeline-date-col {
+  padding-top: 14px;
+  padding-right: 18px;
+  text-align: right;
+}
+
+.timeline-date-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+:is(.dark .timeline-date-text) {
+  color: #94a3b8;
+}
+
+/* Center Spine Column */
+.timeline-spine-col {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+}
+
+/* Continuous vertical timeline connector line */
+.timeline-line {
+  position: absolute;
+  top: 18px;
+  bottom: -32px;
+  width: 2px;
+  background-color: #93c5fd;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+:is(.dark .timeline-line) {
+  background-color: #1e3a8a;
+}
+
+.timeline-item:last-child .timeline-line {
+  display: none;
+}
+
+/* Circle Badge on the spine */
+.timeline-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  z-index: 1;
+  margin-top: 6px;
+  box-shadow: 0 0 0 4px #eff6ff, 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:is(.dark .timeline-badge) {
+  background-color: #1e293b;
+  border-color: #3b82f6;
+  color: #60a5fa;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-item:hover .timeline-badge {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 6px #dbeafe, 0 4px 8px rgba(37, 99, 235, 0.15);
+  transform: scale(1.06);
+}
+
+:is(.dark .timeline-item:hover .timeline-badge) {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.25);
+}
+
+.timeline-badge-icon {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.2;
+}
+
+/* ==========================================================================
+   Right Card Column
+   ========================================================================== */
+
+.timeline-card-col {
+  padding-left: 12px;
+}
+
+.timeline-card {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:is(.dark .timeline-card) {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+}
+
+:is(.dark .timeline-card:hover) {
+  border-color: #475569;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* Triangular notch / pointer pointing to the circle */
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #ffffff;
+  z-index: 2;
+}
+
+.timeline-card::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 9px solid #e2e8f0;
+  z-index: 1;
+}
+
+:is(.dark .timeline-card::before) {
+  border-right-color: #1e293b;
+}
+
+:is(.dark .timeline-card::after) {
+  border-right-color: #334155;
+}
+
+/* Card Header */
+.timeline-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.timeline-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+  margin: 0;
+  line-height: 1.3;
+}
+
+:is(.dark .timeline-card-title) {
+  color: #f8fafc;
+}
+
+/* Current / Active Badge */
+.timeline-current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+:is(.dark .timeline-current-badge) {
+  background-color: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.timeline-current-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+:is(.dark .timeline-current-dot) {
+  background-color: #60a5fa;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Company / Meta Info */
+.timeline-card-company {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+:is(.dark .timeline-card-company) {
+  color: #60a5fa;
+}
+
+/* Mobile-only date display inside card */
+.timeline-mobile-date {
+  display: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+:is(.dark .timeline-mobile-date) {
+  color: #94a3b8;
+}
+
+/* Description paragraph */
+.timeline-card-desc {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+:is(.dark .timeline-card-desc) {
+  color: #cbd5e1;
+}
+
+/* Technologies Pill Tags */
+.timeline-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #f1f5f9;
+}
+
+:is(.dark .timeline-tech-list) {
+  border-top-color: #334155;
+}
+
+.timeline-tech-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  background-color: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:is(.dark .timeline-tech-tag) {
+  color: #cbd5e1;
+  background-color: #0f172a;
+}
+
+.timeline-tech-tag:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+:is(.dark .timeline-tech-tag:hover) {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+/* Empty State */
+.timeline-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+:is(.dark .timeline-empty) {
+  background-color: #1e293b;
+  border-color: #475569;
+  color: #94a3b8;
+}
+
+.timeline-empty-icon {
+  width: 44px;
+  height: 44px;
+  color: #94a3b8;
+  margin: 0 auto 12px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .timeline-section {
+    padding: 70px 16px 90px;
   }
-  
-  .work-section.dark {
-    background: #0d0d0d;
+
+  .timeline-header {
+    margin-bottom: 50px;
   }
-  
-  /* CONTAINER */
-  .work-container {
-    max-width: 1200px;
-    margin: 0 auto;
+
+  .timeline-watermark {
+    font-size: 3.5rem;
   }
-  
-  /* HEADER */
-  .work-header {
-    text-align: center;
-    margin-bottom: 60px;
+
+  .timeline-item {
+    grid-template-columns: 38px 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
   }
-  
-  .work-subtitle {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #2563eb;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+
+  /* Hide left date column on mobile */
+  .timeline-date-col {
+    display: none;
   }
-  
-  .work-title {
-    font-size: 42px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    color: #111;
+
+  /* Show date inside card on mobile */
+  .timeline-mobile-date {
+    display: inline-block;
   }
-  
-  .work-description {
-    font-size: 18px;
-    color: #555;
-    max-width: 700px;
-    margin: 0 auto;
+
+  .timeline-spine-col {
+    align-self: stretch;
   }
-  
-  /* EMPTY STATE */
-  .work-empty {
-    text-align: center;
-    padding: 80px 0;
-    color: #777;
+
+  .timeline-line {
+    left: 50%;
   }
-  
-  .work-empty-icon {
-    width: 60px;
-    height: 60px;
-    color: #999;
-    margin-bottom: 20px;
+
+  .timeline-badge {
+    width: 34px;
+    height: 34px;
+    margin-top: 10px;
   }
-  
-  /* LIST WRAPPER */
-  .work-list {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
+
+  .timeline-badge-icon {
+    width: 15px;
+    height: 15px;
   }
-  
-  /* WORK CARD */
-  .work-card {
-    position: relative;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-left: 6px solid #3b82f6;
-    border-radius: 24px;
-    padding: 36px;
-    transition: all 0.4s ease;
-    overflow: hidden;
+
+  .timeline-card-col {
+    padding-left: 0;
   }
-  
-  .work-card:hover {
-    transform: translateY(-6px);
-    border-color: #2563eb;
-    box-shadow: 0px 20px 40px rgba(37, 99, 235, 0.25);
+
+  .timeline-card {
+    padding: 18px 20px;
   }
-  
-  /* Hover gradient background */
-  .work-card-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, #e8f0ff);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    border-radius: inherit;
+
+  .timeline-card::before,
+  .timeline-card::after {
+    top: 18px;
   }
-  
-  .work-card:hover .work-card-bg {
-    opacity: 1;
-  }
-  
-  /* CONTENT */
-  .work-card-content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  /* TITLE AREA */
-  .work-card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  
-  .work-card-title-group {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  
-  .work-card-icon {
-    width: 28px;
-    height: 28px;
-    color: #2563eb;
-  }
-  
-  .work-position {
-    font-size: 24px;
-    font-weight: 700;
-    color: #111;
-  }
-  
-  .work-company {
-    font-size: 18px;
-    font-weight: 500;
-    margin-top: 2px;
-    color: #444;
-  }
-  
-  /* CURRENT TAG */
-  .work-current-tag {
-    background: #facc15;
-    padding: 6px 12px;
-    font-weight: 800;
-    border-radius: 12px;
-    font-size: 14px;
-    color: #111;
-    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
-  }
-  
-  /* DESCRIPTION */
-  .work-text {
-    color: #555;
-    line-height: 1.6;
-    margin-top: 16px;
-  }
-  
-  /* TECHNOLOGY TAGS */
-  .work-tech-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  
-  .work-tech {
-    padding: 6px 12px;
-    background: #dbeafe;
-    color: #1d4ed8;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 10px;
-  }
-  
-  .work-tech-more {
-    font-size: 12px;
-    color: #777;
-  }
-  
-  /* DATE SECTION */
-  .work-date {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-top: 1px solid #e5e7eb;
-    padding-top: 18px;
-    margin-top: 20px;
-    color: #555;
-    font-size: 15px;
-  }
-  
-  .work-calendar-icon {
-    width: 18px;
-    height: 18px;
-    color: #555;
-  }
-  
-  .work-present {
-    color: #16a34a;
-  }
-  
+}
